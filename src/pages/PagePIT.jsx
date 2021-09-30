@@ -4,14 +4,25 @@ import React, { useState } from "react";
 import FormLogin from "../components/FormLogin";
 import { DataContext } from "../services/DataContext";
 import api from "../services/api";
+import FormProfessional from "../components/FormProfessional";
 
 function PagePIT() {
 
   const [data, setData] = useState({});
-  const [etapa, setEtapa] = useState(0);
+  const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [erros, setErros] = useState({login:{valid:true, text:""}});
-
+  const formStep = [
+    <>
+      {erros.login.valid ? "" : <Alert severity="error">{erros.login.text}</Alert>}
+      <FormLogin disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
+    </>,
+   <>
+   <FormProfessional/>
+   </>,
+   <></>,
+   <></>,
+  ];
 
   async function handleLogin(user) {
     if(user.login.length === undefined || user.login.length < 3){
@@ -26,7 +37,7 @@ function PagePIT() {
     try {
       let response = await api.post("/authenticate", user);
       setData({user: response.data});
-      setEtapa(1);
+      setStage(1);
       setErros({login:{valid: true, text: ""}});
     } catch (error) {
 
@@ -53,20 +64,20 @@ function PagePIT() {
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           Utilize o formulário abaixo para gerar o PIT.
         </Typography>
-        <Stepper activeStep={etapa}>
+        <Stepper activeStep={stage}>
           <Step>
             <StepLabel>Autenticação</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Profissional</StepLabel>
+            <StepLabel>Unidade/Servidor</StepLabel>
           </Step>
           <Step>
             <StepLabel>Carga Horária</StepLabel>
           </Step>
+         
         </Stepper>
         <br />
-        {erros.login.valid ? "" : <Alert severity="error">{erros.login.text}</Alert>}
-        <FormLogin disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
+         {formStep[stage]}
       </Container>
     </DataContext.Provider>
   );
