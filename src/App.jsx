@@ -13,8 +13,8 @@ function App() {
     },
     palette: {
       primary: {
-        main: '#0971f1',
-        darker: '#053e85',
+        main: '#3b0304',
+        darker: '#3b0304',
       },
       neutral: {
         main: '#64748B',

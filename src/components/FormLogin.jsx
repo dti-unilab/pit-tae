@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 
-function FormLogin({ onSubmitForm }) {
+function FormLogin(props) {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -9,34 +9,41 @@ function FormLogin({ onSubmitForm }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({ login, senha });
+        props.onSubmitForm({ login, senha });
       }}
     >
       <TextField
+        disabled={props.disabledLogin}
         value={login}
         onChange={(event) => {
           setLogin(event.target.value);
         }}
         id="login"
-        label="Login"
+        label="Login do SIG"
         variant="outlined"
         margin="normal"
         fullWidth
       />
       <TextField
+        disabled={props.disabledLogin}
         value={senha}
         onChange={(event) => {
           setSenha(event.target.value);
         }}
         id="senha"
-        label="Senha"
+        label="Senha do SIG"
         variant="outlined"
         margin="normal"
         type="password"
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        disabled={props.disabledLogin}
+        type="submit"
+        variant="contained"
+        color="primary"
+      >
         Logar
       </Button>
     </form>

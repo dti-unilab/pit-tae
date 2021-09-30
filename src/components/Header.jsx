@@ -1,5 +1,4 @@
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import CameraIcon from '@mui/icons-material/PhotoCamera';
+import { AppBar, Toolbar } from "@material-ui/core";
 import React from "react";
 import Image from '../assets/img/bg-topo.png';
 import LogoUNILAB from '../assets/img/logo-unilab.png';

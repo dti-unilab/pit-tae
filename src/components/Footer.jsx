@@ -1,5 +1,4 @@
 import { Typography } from "@material-ui/core";
-import { Copyright } from "@material-ui/icons";
 import { Box } from "@material-ui/system";
 import React from "react";
 

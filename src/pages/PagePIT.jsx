@@ -1,4 +1,4 @@
-import { Button, Stack } from "@material-ui/core";
+import { Alert, Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import FormLogin from "../components/FormLogin";
@@ -6,17 +6,38 @@ import { DataContext } from "../services/DataContext";
 import api from "../services/api";
 
 function PagePIT() {
-  const [data, setData] = useState(undefined);
+
+  const [data, setData] = useState({});
+  const [etapa, setEtapa] = useState(0);
+  const [disabledLogin, setDisabledLogin] = useState(false);
+  const [erros, setErros] = useState({login:{valid:true, text:""}});
+
 
   async function handleLogin(user) {
-    await api
-      .post("/authenticate", user)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((erro) => console.log(erro));
+    if(user.login.length === undefined || user.login.length < 3){
+      setErros({login:{valid: false, text: "Seu login deve ter no mínimo 3 caracteres!"}});
+      return;
+    }
+    if(user.senha.length === undefined || user.senha.length < 3){
+      setErros({login:{valid: false, text: "Sua senha deve ter no mínimo 3 caracteres!"}});
+      return;
+    }
+    setDisabledLogin(true);
+    try {
+      let response = await api.post("/authenticate", user);
+      setData({user: response.data});
+      setEtapa(1);
+      setErros({login:{valid: true, text: ""}});
+    } catch (error) {
+
+      setErros({login:{valid: false, text: "Você errou a senha, tente outra vez!"}});
+      setDisabledLogin(false);
+    }
+    
   }
+  
   return (
+    
     <DataContext.Provider value={data}>
       <Container maxWidth="sm">
         <br />
@@ -32,7 +53,20 @@ function PagePIT() {
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           Utilize o formulário abaixo para gerar o PIT.
         </Typography>
-        <FormLogin onSubmitForm={handleLogin} />
+        <Stepper activeStep={etapa}>
+          <Step>
+            <StepLabel>Autenticação</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Profissional</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Carga Horária</StepLabel>
+          </Step>
+        </Stepper>
+        <br />
+        {erros.login.valid ? "" : <Alert severity="error">{erros.login.text}</Alert>}
+        <FormLogin disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
       </Container>
     </DataContext.Provider>
   );
