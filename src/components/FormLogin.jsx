@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 
-function FormLogin({onSubmitForm}) {
+function FormLogin({ onSubmitForm }) {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -9,7 +9,7 @@ function FormLogin({onSubmitForm}) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({login, senha});
+        onSubmitForm({ login, senha });
       }}
     >
       <TextField
@@ -35,9 +35,9 @@ function FormLogin({onSubmitForm}) {
         type="password"
         fullWidth
       />
-      
+
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+        Logar
       </Button>
     </form>
   );
