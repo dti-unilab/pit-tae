@@ -1,7 +1,7 @@
-import { Autocomplete, Button, TextField } from "@material-ui/core";
+import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
-const periodos = [{ descricao: "Outubro a Dezembro" }];
+const periodos = [{ descricao: "Outubro a Dezembro de 2021" }];
 const regimes = [
   { descricao: "20 horas" },
   { descricao: "30 horas" },
@@ -9,8 +9,8 @@ const regimes = [
 ];
 
 function FormProfessional(props) {
-  const { aoEnviar } = props;
-  const [periodo, setPeriodo] = useState({ descricao: "Outubro a Dezembro" });
+  const { onSubmitForm } = props;
+  const [periodo, setPeriodo] = useState({ descricao: "Outubro a Dezembro de 2021" });
   const [regime, setRegime] = useState( { descricao: "40 horas" });
 
 
@@ -26,9 +26,18 @@ function FormProfessional(props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar({ periodo, regime });
+        onSubmitForm({ periodo, regime });
       }}
     >
+
+<Typography
+        variant="subtitle1"
+        align="center"
+        color="text.secondary"
+        component="p"
+      >
+        Nome: {props.data.user.name}
+      </Typography>
       <Autocomplete
         id="periodo"
         name="periodo"
@@ -41,7 +50,7 @@ function FormProfessional(props) {
           <TextField
             required
             {...params}
-            label="Período Letivo"
+            label="Período"
             variant="outlined"
           />
         )}

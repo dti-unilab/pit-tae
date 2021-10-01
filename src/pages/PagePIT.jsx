@@ -18,10 +18,14 @@ function PagePIT() {
       <FormLogin disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
     </>,
    <>
-   <FormProfessional/>
+   <FormProfessional onSubmitForm={handleProfessional} data={data}/>
    </>,
-   <></>,
-   <></>,
+   <>
+    Teste
+   </>,
+   <>
+   Gerar PDF
+   </>,
   ];
 
   async function handleLogin(user) {
@@ -46,7 +50,10 @@ function PagePIT() {
     }
     
   }
-  
+  function handleProfessional(dataProfessional){
+    console.log(dataProfessional);
+    setStage(2);
+  }
   return (
     
     <DataContext.Provider value={data}>
