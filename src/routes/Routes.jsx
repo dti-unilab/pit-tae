@@ -8,7 +8,7 @@ function Routes() {
     return (
         <Router>
           <Switch > 
-            <Route exact path='/pit'>
+            <Route exact path='/pit-tae'>
                 <PagePIT/>
             </Route>
             <Route>
