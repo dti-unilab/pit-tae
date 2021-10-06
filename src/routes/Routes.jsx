@@ -3,13 +3,13 @@ import Page404 from '../pages/Page404';
 import PagePIT from '../pages/PagePIT';
 
 
-
 function Routes() {
     return (
         <Router>
           <Switch > 
             <Route exact path='/pit-tae'>
                 <PagePIT/>
+                
             </Route>
             <Route>
                 <Page404/>

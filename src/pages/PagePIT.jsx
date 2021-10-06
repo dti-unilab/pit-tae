@@ -71,17 +71,17 @@ function PagePIT() {
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           Utilize o formulário abaixo para gerar o PIT.
         </Typography>
-        <Stepper activeStep={stage}>
+        <Stepper activeStep={stage} alternativeLabel>
           <Step>
             <StepLabel>Autenticação</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Unidade/Servidor</StepLabel>
+            <StepLabel>Dados da Unidade/Servidor</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Carga Horária</StepLabel>
+            <StepLabel>Planejamento Interno</StepLabel>
           </Step>
-         
+   
         </Stepper>
         <br />
          {formStep[stage]}
