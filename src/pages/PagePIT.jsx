@@ -1,61 +1,73 @@
 import { Alert, Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
 import React, { useState } from "react";
-import FormLogin from "../components/FormLogin";
+import FormLogin from "../components/StepAuth";
 import { DataContext } from "../services/DataContext";
 import api from "../services/api";
-import FormProfessional from "../components/FormProfessional";
+import StepProfessional from "../components/StepProfessional";
+import StepPlanning from "../components/StepPlanning";
+import StepAuth from "../components/StepAuth";
 
 function PagePIT() {
-
   const [data, setData] = useState({});
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
-  const [erros, setErros] = useState({login:{valid:true, text:""}});
+  const [erros, setErros] = useState({ login: { valid: true, text: "" } });
   const formStep = [
     <>
-      {erros.login.valid ? "" : <Alert severity="error">{erros.login.text}</Alert>}
-      <FormLogin disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
+      <StepPlanning onSubmitForm={handleProfessional} data={data} />
+      {erros.login.valid ? (
+        ""
+      ) : (
+        <Alert severity="error">{erros.login.text}</Alert>
+      )}
+      <StepAuth disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
     </>,
-   <>
-   <FormProfessional onSubmitForm={handleProfessional} data={data}/>
-   </>,
-   <>
-    Teste
-   </>,
-   <>
-   Gerar PDF
-   </>,
+    <>
+      <StepProfessional onSubmitForm={handleProfessional} data={data} />
+    </>,
+    <>
+    
+    </>,
+    <>Gerar PDF</>,
   ];
 
   async function handleLogin(user) {
-    if(user.login.length === undefined || user.login.length < 3){
-      setErros({login:{valid: false, text: "Seu login deve ter no mínimo 3 caracteres!"}});
+    if (user.login.length === undefined || user.login.length < 3) {
+      setErros({
+        login: {
+          valid: false,
+          text: "Seu login deve ter no mínimo 3 caracteres!",
+        },
+      });
       return;
     }
-    if(user.senha.length === undefined || user.senha.length < 3){
-      setErros({login:{valid: false, text: "Sua senha deve ter no mínimo 3 caracteres!"}});
+    if (user.senha.length === undefined || user.senha.length < 3) {
+      setErros({
+        login: {
+          valid: false,
+          text: "Sua senha deve ter no mínimo 3 caracteres!",
+        },
+      });
       return;
     }
     setDisabledLogin(true);
     try {
       let response = await api.post("/authenticate", user);
-      setData({user: response.data});
+      setData({ user: response.data });
       setStage(1);
-      setErros({login:{valid: true, text: ""}});
+      setErros({ login: { valid: true, text: "" } });
     } catch (error) {
-
-      setErros({login:{valid: false, text: "Você errou a senha, tente outra vez!"}});
+      setErros({
+        login: { valid: false, text: "Você errou a senha, tente outra vez!" },
+      });
       setDisabledLogin(false);
     }
-    
   }
-  function handleProfessional(dataProfessional){
-    console.log(dataProfessional);
+  function handleProfessional(dataProfessional) {
     setStage(2);
   }
   return (
-    
     <DataContext.Provider value={data}>
       <Container maxWidth="sm">
         <br />
@@ -76,15 +88,14 @@ function PagePIT() {
             <StepLabel>Autenticação</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Dados da Unidade/Servidor</StepLabel>
+            <StepLabel>Dados da Unidade e Servidor</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Planejamento Interno</StepLabel>
+            <StepLabel>Planejamento, Atividades e Metas</StepLabel>
           </Step>
-   
         </Stepper>
         <br />
-         {formStep[stage]}
+        {formStep[stage]}
       </Container>
     </DataContext.Provider>
   );

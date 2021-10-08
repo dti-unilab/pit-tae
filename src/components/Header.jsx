@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <AppBar position="relative" style={styles.paperContainer}>
     <Toolbar>
-      <img width="213" src={LogoUNILAB} alt="Logo UNILAB" />
+      <img width="300" src={LogoUNILAB} alt="Logo UNILAB" />
     </Toolbar>
   </AppBar>
   );

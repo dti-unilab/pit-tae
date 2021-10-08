@@ -2,7 +2,6 @@ import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import React, { useState } from "react";
 
@@ -14,13 +13,12 @@ const regimes = [
   { descricao: "40 horas" },
 ];
 
-function FormProfessional(props) {
+function StepProfessional(props) {
   const { onSubmitForm } = props;
   const [periodo, setPeriodo] = useState({
     descricao: "Outubro a Dezembro de 2021",
   });
   const [regime, setRegime] = useState({ descricao: "40 horas" });
-  
   const [campus, setCampus] = useState({ nome: "Liberdade" });
   
   
@@ -52,7 +50,7 @@ function FormProfessional(props) {
               variant="outlined"
               margin="normal"
               fullWidth
-              required="true"
+              required={true}
             />
             <TextField
               id="horarioFuncionamento"
@@ -60,14 +58,14 @@ function FormProfessional(props) {
               variant="outlined"
               margin="normal"
               fullWidth
-              required="true"
+              required={true}
             />
             <TextField
               id="unidadeExercicio"
               label="Unidade de Exercício"
               variant="outlined"
               margin="normal"
-              required="true"
+              required={true}
               fullWidth
             />
             <Autocomplete
@@ -127,7 +125,7 @@ function FormProfessional(props) {
               label="Cargo Efetivo"
               variant="outlined"
               margin="normal"
-              required="true"
+              required={true}
               fullWidth
             />
             <Autocomplete
@@ -169,7 +167,7 @@ function FormProfessional(props) {
               label="Nome"
               variant="outlined"
               margin="normal"
-              required="true"
+              required={true}
               fullWidth
             />
             <TextField
@@ -177,7 +175,7 @@ function FormProfessional(props) {
               label="Cargo de Direção/Função Gratificada"
               variant="outlined"
               margin="normal"
-              required="true"
+              required={true}
               fullWidth
             />
           </CardContent>
@@ -193,4 +191,4 @@ function FormProfessional(props) {
     </form>
   );
 }
-export default FormProfessional;
+export default StepProfessional;

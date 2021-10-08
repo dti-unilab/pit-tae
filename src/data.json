@@ -1,0 +1,14 @@
+[
+  {
+    "StepAuth": ["handlerAuth", "formAuth"]
+  },
+  {
+    "StepDataProfessional": []
+  },
+  {
+    "StepPlanning": ["FormWork", "FormAtivity", "FormGoal"]
+  }, 
+  {
+      "PdfGenerate" : []
+  }
+]

@@ -15,6 +15,7 @@ function App() {
       primary: {
         main: '#3b0304',
         darker: '#3b0304',
+        
       },
       neutral: {
         main: '#64748B',

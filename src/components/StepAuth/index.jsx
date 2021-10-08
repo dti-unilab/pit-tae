@@ -6,7 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { TextField, Button } from "@material-ui/core";
 
-function FormLogin(props) {
+function StepAuth(props) {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -63,4 +63,4 @@ function FormLogin(props) {
     </form>
   );
 }
-export default FormLogin;
+export default StepAuth;
