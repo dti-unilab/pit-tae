@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import React from "react";
 import FormActivity from "./FormActivity";
 import FormGoal from "./FormGoal";
@@ -10,6 +11,12 @@ function StepPlanning(props) {
       <FormWork />
       <FormActivity />
       <FormGoal />
+      <br />
+      <form>
+        <Button type="submit" variant="contained" color="primary">
+          Avançar
+        </Button>
+      </form>
     </>
   );
 }

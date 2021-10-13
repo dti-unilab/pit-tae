@@ -3,7 +3,7 @@
     "StepAuth": ["handlerAuth", "formAuth"]
   },
   {
-    "StepDataProfessional": []
+    "StepProfessional": ["FormUnity", "FormEmployee", "FormBoss"]
   },
   {
     "StepPlanning": ["FormWork", "FormAtivity", "FormGoal"]

@@ -1,7 +1,7 @@
 import { Container } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import React from "react";
-import imagem from "../assets/img/404.png";
+import imagem from "../../assets/img/404.png";
 import styled from 'styled-components';
 
 const Image404 = styled.img`

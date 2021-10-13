@@ -1,16 +1,10 @@
-import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import React, { useState } from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import FormWork from "./FormWork";
-import FormActivity from "./FormActivity";
+import React from "react";
+
 
 export default function FormGoal() {
   return (
@@ -105,11 +99,7 @@ export default function FormGoal() {
         </Card>
       </Box>
 
-      <br />
-      <Button type="submit" variant="contained" color="primary">
-        Avançar
-      </Button>
-      <br />
+      
       <br />
     </>
   );

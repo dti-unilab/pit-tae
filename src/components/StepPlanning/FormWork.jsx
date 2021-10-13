@@ -1,14 +1,10 @@
-import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
+import { Autocomplete, TextField, Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import React, { useState } from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+
 
 const regimes = [
   { descricao: "20 horas" },
@@ -21,7 +17,7 @@ function FormWork() {
   const handleChangeRegime = (event, values) => {
     setRegime(values);
   };
-  
+
   return (
     <form>
       <Box sx={{ minWidth: 275 }}>
@@ -85,6 +81,7 @@ function FormWork() {
         </Card>
       </Box>
     </form>
+    
   );
 }
 export default FormWork;

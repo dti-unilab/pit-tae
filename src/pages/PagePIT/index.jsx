@@ -1,12 +1,12 @@
-import { Alert, Step, StepLabel, Stepper } from "@material-ui/core";
+import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import React, { useState } from "react";
-import FormLogin from "../components/StepAuth";
-import { DataContext } from "../services/DataContext";
-import api from "../services/api";
-import StepProfessional from "../components/StepProfessional";
-import StepPlanning from "../components/StepPlanning";
-import StepAuth from "../components/StepAuth";
+import React, { useState, useContext } from "react";
+import api from "../../services/api";
+import StepProfessional from "../../components/StepProfessional";
+import StepPlanning from "../../components/StepPlanning";
+import StepAuth from "../../components/StepAuth";
+import PDFGenerate from "../../components/PDFGenerate";
+import { DataContext } from "../../services/DataContext";
 
 function PagePIT() {
   const [data, setData] = useState({});
@@ -14,23 +14,27 @@ function PagePIT() {
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
   const formStep = [
-    <>
-      <StepPlanning onSubmitForm={handleProfessional} data={data} />
-      {erros.login.valid ? (
-        ""
-      ) : (
-        <Alert severity="error">{erros.login.text}</Alert>
-      )}
-      <StepAuth disabledLogin={disabledLogin} onSubmitForm={handleLogin} />
-    </>,
-    <>
-      <StepProfessional onSubmitForm={handleProfessional} data={data} />
-    </>,
-    <>
-    
-    </>,
-    <>Gerar PDF</>,
+    <StepAuth
+      disabledLogin={disabledLogin}
+      onSubmitForm={handleLogin}
+      erros={erros}
+    />,
+    <StepProfessional 
+      onSubmitForm={handleProfessional} 
+      data={data} />,
+    <StepPlanning 
+      onSubmitForm={handlePlanning} 
+      data={data} />,
+    <PDFGenerate />,
   ];
+  function handleProfessional(dataProfessional) {
+    console.log(dataProfessional);
+    setStage(2);
+  }
+  function handlePlanning(dataPlanning) {
+    console.log(dataPlanning);
+    setStage(3);
+  }
 
   async function handleLogin(user) {
     if (user.login.length === undefined || user.login.length < 3) {
@@ -54,7 +58,7 @@ function PagePIT() {
     setDisabledLogin(true);
     try {
       let response = await api.post("/authenticate", user);
-      setData({ user: response.data });
+      setData({ user: response.data });;
       setStage(1);
       setErros({ login: { valid: true, text: "" } });
     } catch (error) {
@@ -64,11 +68,9 @@ function PagePIT() {
       setDisabledLogin(false);
     }
   }
-  function handleProfessional(dataProfessional) {
-    setStage(2);
-  }
+
   return (
-    <DataContext.Provider value={data}>
+    <DataContext.Provider value={{ data, setData }}>
       <Container maxWidth="sm">
         <br />
         <Typography

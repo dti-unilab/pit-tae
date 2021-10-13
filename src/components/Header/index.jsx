@@ -1,7 +1,7 @@
 import { AppBar, Toolbar } from "@material-ui/core";
 import React from "react";
-import Image from '../assets/img/bg-topo.png';
-import LogoUNILAB from '../assets/img/logo-unilab.png';
+import Image from '../../assets/img/bg-topo.png';
+import LogoUNILAB from '../../assets/img/logo-unilab.png';
 
 
 const styles = {
