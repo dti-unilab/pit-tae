@@ -1,22 +1,28 @@
-import { Autocomplete, TextField, Typography } from "@material-ui/core";
-import Box from "@mui/material/Box";
+import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
 import React, { useState } from "react";
 
-const regimes = [
-  { descricao: "20 horas" },
-  { descricao: "30 horas" },
-  { descricao: "40 horas" },
+const absences = [
+  { description: "Afastamento" },
+  { description: "Licença" },
+  { description: "Férias" },
+  { description: "Outros tipos de ausências previstas em Lei" },
 ];
 
-function FormWork() {
-  const [regime, setRegime] = useState({ descricao: "40 horas" });
-  const handleChangeRegime = (event, values) => {
-    setRegime(values);
+function FormWork(props) {
+  const { onSubmitForm } = props;
+  const [absence, setAbsence] = useState(absences[0]);
+  const handleChangeAbsence = (event, values) => {
+    setAbsence(values);
   };
 
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmitForm();
+      }}
+    >
       <CardHeader title="3.1. Planejamento Interno - Força de Trabalho" />
 
       <Typography
@@ -33,10 +39,10 @@ function FormWork() {
       <Autocomplete
         id="cargaHoraria"
         name="cargaHoraria"
-        options={regimes}
-        getOptionLabel={(option) => option.descricao}
-        onChange={handleChangeRegime}
-        value={regime}
+        options={absences}
+        getOptionLabel={(option) => option.description}
+        onChange={handleChangeAbsence}
+        value={absence}
         fullWidth
         renderInput={(params) => (
           <TextField
@@ -50,7 +56,7 @@ function FormWork() {
       />
       <TextField
         id="cargoEfetivo"
-        label="Tipo"
+        label="Especificar"
         variant="outlined"
         margin="normal"
         required={true}
@@ -79,6 +85,10 @@ function FormWork() {
         margin="normal"
         fullWidth
       />
+
+      <Button type="submit" variant="contained" color="primary">
+        Adicionar Ausencia
+      </Button>
     </form>
   );
 }

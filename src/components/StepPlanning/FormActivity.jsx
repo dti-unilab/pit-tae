@@ -1,8 +1,5 @@
 import {Typography } from "@material-ui/core";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
 import React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -18,11 +15,8 @@ export default function FormActivity() {
   };
   return (
     <>
-      <Box sx={{ minWidth: 275 }}>
-        <Card variant="outlined">
-          <CardHeader title="Atividades em Trabalho Remoto ou sob Revezamento" />
 
-          <CardContent>
+          <CardHeader title="Atividades em Trabalho Remoto ou sob Revezamento" />
             <Typography
               variant="subtitle1"
               align="justify"
@@ -79,9 +73,6 @@ export default function FormActivity() {
                 />
               </RadioGroup>
             </FormControl>
-          </CardContent>
-        </Card>
-      </Box>
     </>
   );
 }
