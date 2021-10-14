@@ -70,31 +70,49 @@ export default function FormGoal() {
       >
         (e) Observação – elencar qualquer situação referente à meta.
       </Typography>
-
-      <TextField
-        id="nomeChefiaImediata"
-        label="Nome"
-        variant="outlined"
-        margin="normal"
-        required={true}
+      <br />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        endIcon={<AddCircleIcon />}
         fullWidth
-      />
-      <TextField
-        id="cargoFuncaoChefia"
-        label="Cargo de Direção/Função Gratificada"
-        variant="outlined"
-        margin="normal"
-        required={true}
+      >
+        ATIVIDADES DE NATUREZA CONTÍNUA
+      </Button>
+      <br />
+      <br />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        endIcon={<AddCircleIcon />}
         fullWidth
-      />
+      >
+        ATIVIDADES VINCULADAS A PROCESSO SEI
+      </Button>
+      <br />
+      <br />
 
       <Button
         type="submit"
         variant="contained"
         color="primary"
         endIcon={<AddCircleIcon />}
+        fullWidth
       >
-        Adicionar
+        ATIVIDADES VINCULADAS A PROJETOS
+      </Button>
+      <br />
+      <br />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        endIcon={<AddCircleIcon />}
+        fullWidth
+      >
+        ATIVIDADES VINCULADAS A AÇÕES
       </Button>
     </>
   );
