@@ -12,8 +12,7 @@ function StepPlanning(props) {
   const [stage, setStage] = useState(0);
 
   function handleSubmitWork() {
-    console.log("Submeteu Work");
-    setStage(1);
+    console.log("Mais um na lista");
   }
 
   function handleSubmitActivity() {
@@ -21,7 +20,7 @@ function StepPlanning(props) {
   }
   function handlerNextStep(){
     const next = stage+1;
-    if(next < 2){
+    if(next < 3){
       setStage(next);
     }else{
       onSubmitForm();

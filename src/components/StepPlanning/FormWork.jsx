@@ -1,6 +1,9 @@
 import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
 import React, { useState } from "react";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
 
 const absences = [
   { description: "Afastamento" },
@@ -86,8 +89,8 @@ function FormWork(props) {
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary">
-        Adicionar Ausencia
+      <Button type="submit" variant="contained" color="primary" endIcon={<AddCircleIcon />}>
+        Adicionar
       </Button>
     </form>
   );

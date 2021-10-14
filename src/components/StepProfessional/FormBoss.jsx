@@ -34,7 +34,7 @@ function FormBoss(props) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Próxima Etapa
+        Avançar
       </Button>
     </form>
   );
