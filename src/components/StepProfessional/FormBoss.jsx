@@ -1,8 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
+import { Button, CardHeader, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 function FormBoss(props) {
@@ -19,6 +15,7 @@ function FormBoss(props) {
         onSubmitForm({ periodo, regime });
       }}
     >
+      <CardHeader title="2.1. Dados da Chefia Imediata" />
       <TextField
         id="nomeChefiaImediata"
         label="Nome"

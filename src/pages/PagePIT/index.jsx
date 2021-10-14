@@ -1,6 +1,6 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import api from "../../services/api";
 import StepProfessional from "../../components/StepProfessional";
 import StepPlanning from "../../components/StepPlanning";

@@ -1,26 +1,20 @@
-import { Autocomplete, Button, TextField } from "@material-ui/core";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
+import { Autocomplete, Button, CardHeader, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { CardActions } from "@mui/material";
 
-const listaCampus = [
-  { nome: "Liberdade" },
-  { nome: "Palmares" },
-  { nome: "Auroras" },
-  { nome: "Malês" },
+
+const listCampus = [
+  { name: "Liberdade" },
+  { name: "Palmares" },
+  { name: "Auroras" },
+  { name: "Malês" },
 ];
-const periodos = [{ descricao: "Outubro a Dezembro de 2021" }];
+const periodos = [{ description: "Outubro a Dezembro de 2021" }];
 
 function FormUnity(props) {
   const { onSubmitForm } = props;
-  const [periodo, setPeriodo] = useState({
-    descricao: "Outubro a Dezembro de 2021",
-  });
-  const [regime] = useState({ descricao: "40 horas" });
-  const [campus, setCampus] = useState({ nome: "Liberdade" });
+  const [periodo, setPeriodo] = useState(periodos[0]);
+  
+  const [campus, setCampus] = useState(listCampus[0]);
 
   const handleChangeCampus = (event, values) => {
     setCampus(values);
@@ -33,9 +27,10 @@ function FormUnity(props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({ periodo, regime });
+        onSubmitForm();
       }}
     >
+      <CardHeader title="2.1. Dados da Unidade" />
       <TextField
         id="unidadeMaxima"
         label="Unidade Máxima"
@@ -63,8 +58,8 @@ function FormUnity(props) {
       <Autocomplete
         id="campus"
         name="campus"
-        options={listaCampus}
-        getOptionLabel={(option) => option.nome}
+        options={listCampus}
+        getOptionLabel={(option) => option.name}
         onChange={handleChangeCampus}
         value={campus}
         fullWidth
@@ -82,7 +77,7 @@ function FormUnity(props) {
         id="periodo"
         name="periodo"
         options={periodos}
-        getOptionLabel={(option) => option.descricao}
+        getOptionLabel={(option) => option.description}
         onChange={handleChangePeriodo}
         value={periodo}
         fullWidth

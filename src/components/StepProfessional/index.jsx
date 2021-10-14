@@ -1,19 +1,35 @@
-import { Button, Autocomplete, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import FormUnity from "./FormUnity";
 import FormEmployee from "./FormEmployee";
 import FormBoss from "./FormBoss";
-import { CardActions } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 
 function StepProfessional(props) {
   const { onSubmitForm } = props;
   const [stage, setStage] = useState(0);
 
-  const formStage = [<FormUnity />, <FormEmployee />, <FormBoss />];
+  function handleSubmitUnity() {
+    console.log("Submeteu UNITY");
+    setStage(1);
+  }
+
+  function handleSubmitEmployee() {
+    console.log("Submeteu Employee");
+    setStage(2);
+  }
+
+  function handleSubmitBoss() {
+    onSubmitForm();
+    setStage(0);
+  }
+
+  const formStage = [
+    <FormUnity onSubmitForm={handleSubmitUnity} />,
+    <FormEmployee onSubmitForm={handleSubmitEmployee} />,
+    <FormBoss onSubmitForm={handleSubmitBoss} />,
+  ];
 
   return (
     <>

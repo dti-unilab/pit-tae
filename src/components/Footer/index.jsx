@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+    <Box sx={{ p: 6 }} component="footer">
       <Typography variant="h6" align="center" gutterBottom>
         UNILAB - Universidade da Integração Internacional da Lusofonia Afro-Brasileira
       </Typography>

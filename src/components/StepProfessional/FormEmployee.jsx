@@ -1,22 +1,15 @@
-import { Autocomplete, Button, TextField } from "@material-ui/core";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
+import { Autocomplete, Button, CardHeader, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 const regimes = [
-  { descricao: "20 horas" },
-  { descricao: "30 horas" },
-  { descricao: "40 horas" },
+  { description: "20 horas" },
+  { description: "30 horas" },
+  { description: "40 horas" },
 ];
 
 function FormEmployee(props) {
   const { onSubmitForm } = props;
-  const [periodo] = useState({
-    descricao: "Outubro a Dezembro de 2021",
-  });
-  const [regime, setRegime] = useState({ descricao: "40 horas" });
+  const [regime, setRegime] = useState(regimes[2]);
 
   const handleChangeRegime = (event, values) => {
     setRegime(values);
@@ -26,9 +19,10 @@ function FormEmployee(props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({ periodo, regime });
+        onSubmitForm();
       }}
     >
+      <CardHeader title="2.1. Dados do Servidor" />
       <TextField
         id="cargoEfetivo"
         label="Cargo Efetivo"
@@ -41,7 +35,7 @@ function FormEmployee(props) {
         id="cargaHoraria"
         name="cargaHoraria"
         options={regimes}
-        getOptionLabel={(option) => option.descricao}
+        getOptionLabel={(option) => option.description}
         onChange={handleChangeRegime}
         value={regime}
         fullWidth
