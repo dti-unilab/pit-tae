@@ -1,8 +1,9 @@
 import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ContainerList from "./ContainerList";
+import { DataContext } from "../../../services/DataContext";
 
 
 
@@ -14,17 +15,25 @@ const absences = [
 ];
 
 function FormWork(props) {
+  const dataContext = useContext(DataContext);
   const { onSubmitForm } = props;
   const [absence, setAbsence] = useState(absences[0]);
   const handleChangeAbsence = (event, values) => {
     setAbsence(values);
   };
 
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm();
+        dataContext.afastamentos.push("Eu sou eu");
+        console.log(dataContext);
+        console.log("Vou setar");
+        //dataContext.setData({aaa: "123"});
+        console.log(dataContext);
+        //onSubmitForm();
+
       }}
     >
       <CardHeader title="3.1. Planejamento Interno - Força de Trabalho" />

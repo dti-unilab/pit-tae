@@ -10,6 +10,8 @@ import { DataContext } from "../../services/DataContext";
 
 function PagePIT() {
   const [data, setData] = useState({});
+  const [afastamentos] = useState([]);
+  const [atividades] = useState([]);
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
@@ -29,7 +31,7 @@ function PagePIT() {
   ];
   function handleProfessional(dataProfessional) {
     const user = data.user;
-    setData({user, dataProfessional});
+    setData({user, dataProfessional, afastamentos, atividades});
     setStage(2);
   }
   function handlePlanning(dataPlanning) {
@@ -59,7 +61,7 @@ function PagePIT() {
     setDisabledLogin(true);
     try {
       let response = await api.post("/authenticate", user);
-      setData({ user: response.data });
+      setData({ user: response.data, afastamentos, atividades });
       setStage(1);
       setErros({ login: { valid: true, text: "" } });
     } catch (error) {
@@ -71,7 +73,7 @@ function PagePIT() {
   }
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, setData, afastamentos, atividades }}>
       <Container maxWidth="sm">
         <br />
         <Typography
