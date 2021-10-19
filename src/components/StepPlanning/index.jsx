@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, CardActions } from "@material-ui/core";
+import ContainerList from "./FormWork/ContainerList";
 
 function StepPlanning(props) {
   const { onSubmitForm } = props;
@@ -31,7 +32,10 @@ function StepPlanning(props) {
   
 
   const formStage = [
-    <FormWork onSubmitForm={handleSubmitWork} />,
+    <>
+      <FormWork onSubmitForm={handleSubmitWork} />
+      <ContainerList/>
+    </>,
     <FormActivity onSubmitForm={handleSubmitActivity} />,
     <FormGoal/>,
   ];
@@ -42,8 +46,6 @@ function StepPlanning(props) {
         <Card variant="outlined">
           <CardContent>
             {formStage[stage]}
-            <hr/>
-            <hr/>
             <CardActions>
               <Button onClick={handlerNextStep} type="submit" variant="contained" color="primary">
                 Avançar

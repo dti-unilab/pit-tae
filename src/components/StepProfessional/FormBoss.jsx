@@ -3,20 +3,23 @@ import React, { useState } from "react";
 
 function FormBoss(props) {
   const { onSubmitForm } = props;
-  const [periodo] = useState({
-    descricao: "Outubro a Dezembro de 2021",
-  });
-  const [regime] = useState({ descricao: "40 horas" });
+  const [nome, setNome] = useState("");
+  const [cargo, setCargo] = useState("");
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({ periodo, regime });
+        onSubmitForm({ nome, cargo });
+        //console.log({ nome, cargo });
       }}
     >
-      <CardHeader title="2.1. Dados da Chefia Imediata" />
+      <CardHeader title="2.2. Dados da Chefia Imediata" />
       <TextField
+        value={nome}
+        onChange={(event) => {
+          setNome(event.target.value);
+        }}
         id="nomeChefiaImediata"
         label="Nome"
         variant="outlined"
@@ -25,6 +28,10 @@ function FormBoss(props) {
         fullWidth
       />
       <TextField
+        value={cargo}
+        onChange={(event) => {
+          setCargo(event.target.value);
+        }}
         id="cargoFuncaoChefia"
         label="Cargo de Direção/Função Gratificada"
         variant="outlined"

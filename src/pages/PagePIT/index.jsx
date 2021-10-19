@@ -28,7 +28,8 @@ function PagePIT() {
     <PDFGenerate />,
   ];
   function handleProfessional(dataProfessional) {
-    console.log(dataProfessional);
+    const user = data.user;
+    setData({user, dataProfessional});
     setStage(2);
   }
   function handlePlanning(dataPlanning) {
@@ -58,7 +59,7 @@ function PagePIT() {
     setDisabledLogin(true);
     try {
       let response = await api.post("/authenticate", user);
-      setData({ user: response.data });;
+      setData({ user: response.data });
       setStage(1);
       setErros({ login: { valid: true, text: "" } });
     } catch (error) {

@@ -8,22 +8,22 @@ import CardContent from "@mui/material/CardContent";
 
 function StepProfessional(props) {
   const { onSubmitForm } = props;
-  const [dataUnity, setDataUnity] = useState({});
+  const [dadosUnidade, setDadosUnidade] = useState({});
+  const [dadosProfessional, setDadosProfessional] = useState({});
   const [stage, setStage] = useState(0);
 
   function handleSubmitUnity(data) {
-    setDataUnity(data);
-    console.log(dataUnity);
+    setDadosUnidade(data);
     setStage(1);
   }
 
   function handleSubmitEmployee(data) {
-    console.log(data);
+    setDadosProfessional(data);
     setStage(2);
   }
 
-  function handleSubmitBoss() {
-    onSubmitForm();
+  function handleSubmitBoss(data) {
+    onSubmitForm({ dadosUnidade, dadosProfessional, dadosChefe: data });
     setStage(0);
   }
 
