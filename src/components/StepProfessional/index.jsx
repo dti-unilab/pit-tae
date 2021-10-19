@@ -17,13 +17,12 @@ function StepProfessional(props) {
     setStage(1);
   }
 
-  function handleSubmitEmployee() {
-    console.log("Submeteu Employee");
+  function handleSubmitEmployee(data) {
+    console.log(data);
     setStage(2);
   }
 
   function handleSubmitBoss() {
-
     onSubmitForm();
     setStage(0);
   }

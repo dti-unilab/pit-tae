@@ -18,54 +18,55 @@ function FormData(props) {
   const handleChangeFrequencia = (event) => {
     setFrequencia(event.target.value);
   };
-  function Form123(){
-      return(<>
+  function Form123() {
+    return (
+      <>
         <TextField
-            id="ordem1"
-            label="Ordem de prioridade"
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
-          <TextField
-            id="Atividade1"
-            label="Atividade"
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
-          <TextField
-            id="fieldMeta1"
-            label="Meta de desempenho"
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
-          <TextField
-            id="fieldPeriodo1"
-            label="Período para atingimento da meta"
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
-          <TextField
-            id="fieldObs"
-            label="Observação"
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
-          
-        
-        </>);
+          id="ordem1"
+          label="Ordem de prioridade"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+        <TextField
+          id="Atividade1"
+          label="Atividade"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+        <TextField
+          id="fieldMeta1"
+          label="Meta de desempenho"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+        <TextField
+          id="fieldPeriodo1"
+          label="Período para atingimento da meta"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+        <TextField
+          id="fieldObs"
+          label="Observação"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+      </>
+    );
   }
-  function Form0(){
-      return (<>
+  function Form0() {
+    return (
+      <>
         <TextField
           id="fieldSequencia"
           label="Sequência"
@@ -90,7 +91,7 @@ function FormData(props) {
           required={true}
           fullWidth
         />
-  
+
         <FormControl component="fieldset">
           <FormLabel component="legend">Frequência</FormLabel>
           <RadioGroup
@@ -124,14 +125,10 @@ function FormData(props) {
           margin="normal"
           fullWidth
         />
-      </>);
+      </>
+    );
   }
-  const listForms = [
-    <Form0/>,
-    <Form123/>,
-    <Form123/>,
-    <Form123/>,
-  ];
+  const listForms = [<Form0 />, <Form123 />, <Form123 />, <Form123 />];
   return (
     <form
       onSubmit={(event) => {

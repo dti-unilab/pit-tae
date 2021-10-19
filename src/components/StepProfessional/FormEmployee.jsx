@@ -14,11 +14,34 @@ const regimes = [
   { description: "40 horas" },
 ];
 
+const denominacoes = [
+  { descricao: "Pró-Reitor" },
+  { descricao: "Diretor" },
+  { descricao: "Superintendente" },
+  { descricao: "Coordenador" },
+  { descricao: "Assessor" },
+  { descricao: "Gerente" },
+  { descricao: "Chefe" },
+];
+
+const niveisChefia = [
+  { descricao: "CD-1" },
+  { descricao: "CD-2" },
+  { descricao: "CD-3" },
+  { descricao: "CD-4" },
+  { descricao: "FG-1" },
+  { descricao: "FG-2" },
+  { descricao: "FG-3" },
+];
+
 function FormEmployee(props) {
   const { onSubmitForm } = props;
   const [regime, setRegime] = useState(regimes[2]);
+  const [denominacao, setDenominacao] = useState(null);
+  const [nivelChefia, setNivelChefia] = useState(null);
   const [cargoEfetivo, setCargoEfetivo] = useState("");
-  const [exerceGestao, setExerceGestao] = useState(true);
+  const [servidoresGerenciados, setServidoresGerenciados] = useState(0);
+  const [exerceGestao, setExerceGestao] = useState(false);
 
   const handleExerceGestao = (event) => {
     setExerceGestao(event.target.checked);
@@ -26,12 +49,25 @@ function FormEmployee(props) {
   const handleChangeRegime = (event, values) => {
     setRegime(values);
   };
+  const handleChangeNivel = (event, values) => {
+    setNivelChefia(values);
+  };
+  const handleChangeDenominacao = (event, values) => {
+    setDenominacao(values);
+  };
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm();
+        onSubmitForm({
+          cargoEfetivo,
+          regime,
+          exerceGestao,
+          denominacao,
+          nivelChefia,
+          servidoresGerenciados,
+        });
       }}
     >
       <CardHeader title="2.1. Dados do Servidor" />
@@ -65,40 +101,73 @@ function FormEmployee(props) {
           />
         )}
       />
+
       <FormControlLabel
-        checked={exerceGestao}
-        onChange={handleExerceGestao}
-        inputProps={{ "aria-label": "controlled" }}
-        control={<Switch />}
+        control={
+          <Switch
+            checked={exerceGestao}
+            onChange={handleExerceGestao}
+            name="gestao"
+          />
+        }
         label="Exerce Gestão"
       />
+
       <br />
-      
-      {exerceGestao ? (<>
-      
-        <TextField
-        id="dadosGestao"
-        label="Denominação de Gestão"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-      />
-      <TextField
-        id="dadosGestao"
-        label="Nivel"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-      />
-      
-      <TextField
-        id="dadosGestao"
-        label="Quantidade de servidores gerenciados"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-      />
-      </>) : (<></>)}
+
+      {exerceGestao ? (
+        <>
+          <Autocomplete
+            id="denominacao"
+            name="denominacao"
+            options={denominacoes}
+            getOptionLabel={(option) => option.descricao}
+            onChange={handleChangeDenominacao}
+            value={denominacao}
+            fullWidth
+            renderInput={(params) => (
+              <TextField
+                required
+                {...params}
+                label="Denominação de Chefia"
+                variant="outlined"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="nivelChefia"
+            name="nivelChefia"
+            options={niveisChefia}
+            getOptionLabel={(option) => option.descricao}
+            onChange={handleChangeNivel}
+            value={nivelChefia}
+            fullWidth
+            renderInput={(params) => (
+              <TextField
+                required
+                {...params}
+                label="Nível de Gestão"
+                variant="outlined"
+                margin="normal"
+              />
+            )}
+          />
+          <TextField
+            value={servidoresGerenciados}
+            onChange={(event) => {
+              setServidoresGerenciados(event.target.value);
+            }}
+            id="numeroDeServidores"
+            label="Quantidade de servidores gerenciados"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+          />
+        </>
+      ) : (
+        <></>
+      )}
 
       <Button type="submit" variant="contained" color="primary">
         Salvar
