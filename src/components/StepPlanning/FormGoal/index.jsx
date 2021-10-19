@@ -1,9 +1,12 @@
-import { Button, TextField, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
 import React from "react";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import PanelData from "./PanelData";
+
+
 
 export default function FormGoal() {
+  
   return (
     <>
       <CardHeader title="Metas de Desempenho" />
@@ -71,49 +74,7 @@ export default function FormGoal() {
         (e) Observação – elencar qualquer situação referente à meta.
       </Typography>
       <br />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        endIcon={<AddCircleIcon />}
-        fullWidth
-      >
-        ATIVIDADES DE NATUREZA CONTÍNUA
-      </Button>
-      <br />
-      <br />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        endIcon={<AddCircleIcon />}
-        fullWidth
-      >
-        ATIVIDADES VINCULADAS A PROCESSO SEI
-      </Button>
-      <br />
-      <br />
-
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        endIcon={<AddCircleIcon />}
-        fullWidth
-      >
-        ATIVIDADES VINCULADAS A PROJETOS
-      </Button>
-      <br />
-      <br />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        endIcon={<AddCircleIcon />}
-        fullWidth
-      >
-        ATIVIDADES VINCULADAS A AÇÕES
-      </Button>
+      <PanelData/>
     </>
   );
 }

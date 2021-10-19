@@ -28,15 +28,12 @@ function StepPlanning(props) {
     
   }
 
-  function handleSubmitGoal() {
-    onSubmitForm();
-    setStage(0);
-  }
+  
 
   const formStage = [
     <FormWork onSubmitForm={handleSubmitWork} />,
     <FormActivity onSubmitForm={handleSubmitActivity} />,
-    <FormGoal onSubmitForm={handleSubmitGoal} />,
+    <FormGoal/>,
   ];
 
   return (
