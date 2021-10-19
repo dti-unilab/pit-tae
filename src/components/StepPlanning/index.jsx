@@ -12,32 +12,22 @@ function StepPlanning(props) {
   const { onSubmitForm } = props;
   const [stage, setStage] = useState(0);
 
-  function handleSubmitWork() {
-    console.log("Mais um na lista");
-  }
-
   function handleSubmitActivity() {
     console.log("Submeteu Activity");
   }
-  function handlerNextStep(){
-    const next = stage+1;
-    if(next < 3){
+  function handlerNextStep() {
+    const next = stage + 1;
+    if (next < 3) {
       setStage(next);
-    }else{
+    } else {
       onSubmitForm();
     }
-    
   }
 
-  
-
   const formStage = [
-    <>
-      <FormWork onSubmitForm={handleSubmitWork} />
-      <ContainerList/>
-    </>,
+    <FormWork />,
     <FormActivity onSubmitForm={handleSubmitActivity} />,
-    <FormGoal/>,
+    <FormGoal />,
   ];
 
   return (
@@ -47,13 +37,16 @@ function StepPlanning(props) {
           <CardContent>
             {formStage[stage]}
             <CardActions>
-              <Button onClick={handlerNextStep} type="submit" variant="contained" color="primary">
+              <Button
+                onClick={handlerNextStep}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
                 Avançar
               </Button>
             </CardActions>
           </CardContent>
-          
-
         </Card>
       </Box>
     </>

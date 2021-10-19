@@ -11,6 +11,7 @@ import { DataContext } from "../../services/DataContext";
 function PagePIT() {
   const [data, setData] = useState({});
   const [afastamentos] = useState([]);
+  const [user, setUser] = useState({});
   const [atividades] = useState([]);
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
@@ -30,8 +31,8 @@ function PagePIT() {
     <PDFGenerate />,
   ];
   function handleProfessional(dataProfessional) {
-    const user = data.user;
-    setData({user, dataProfessional, afastamentos, atividades});
+    
+    setData({dataProfessional});
     setStage(2);
   }
   function handlePlanning(dataPlanning) {
@@ -39,8 +40,8 @@ function PagePIT() {
     setStage(3);
   }
 
-  async function handleLogin(user) {
-    if (user.login.length === undefined || user.login.length < 3) {
+  async function handleLogin(userAuth) {
+    if (userAuth.login.length === undefined || userAuth.login.length < 3) {
       setErros({
         login: {
           valid: false,
@@ -49,7 +50,7 @@ function PagePIT() {
       });
       return;
     }
-    if (user.senha.length === undefined || user.senha.length < 3) {
+    if (userAuth.senha.length === undefined || userAuth.senha.length < 3) {
       setErros({
         login: {
           valid: false,
@@ -60,8 +61,8 @@ function PagePIT() {
     }
     setDisabledLogin(true);
     try {
-      let response = await api.post("/authenticate", user);
-      setData({ user: response.data, afastamentos, atividades });
+      let response = await api.post("/authenticate", userAuth);
+      setUser( response.data );
       setStage(1);
       setErros({ login: { valid: true, text: "" } });
     } catch (error) {
@@ -73,7 +74,7 @@ function PagePIT() {
   }
 
   return (
-    <DataContext.Provider value={{ data, setData, afastamentos, atividades }}>
+    <DataContext.Provider value={{ data, user, afastamentos, atividades }}>
       <Container maxWidth="sm">
         <br />
         <Typography
