@@ -6,28 +6,19 @@ import StepProfessional from "../../components/StepProfessional";
 import StepPlanning from "../../components/StepPlanning";
 import StepAuth from "../../components/StepAuth";
 import PDFGenerate from "../../components/PDFGenerate";
-import { DataContext } from "../../services/DataContext";
+
 
 function PagePIT() {
   const [data, setData] = useState({});
   const [afastamentos, setAfastamentos] = useState([]);
+  const [up, forceUpdate] = useState(0);
   const [user, setUser] = useState({});
   const [atividades] = useState([]);
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
   
-
-  useEffect(() => {
-    console.log("Alterou afastamentos");
-  },[afastamentos]);
-
-  function handleAddAfastamento(novoAfastamento) {
-    let lista = afastamentos;
-    lista.push(novoAfastamento);
-    console.log("Cheguei aqui");
-    setAfastamentos(lista);
-  }
+ 
 
   const formStep = [
     <StepAuth
@@ -45,6 +36,15 @@ function PagePIT() {
       data={data} />,
     <PDFGenerate />,
   ];
+
+  function handleAddAfastamento(novoAfastamento) {
+    let lista = afastamentos;
+    lista.push(novoAfastamento);
+    console.log("Cheguei aqui");
+    setAfastamentos(lista);
+    forceUpdate(up+1);
+    
+  }
 
   function handleProfessional(dataProfessional) {
     
@@ -90,7 +90,7 @@ function PagePIT() {
   }
 
   return (
-    <DataContext.Provider value={{ data, user, afastamentos, atividades }}>
+
       <Container maxWidth="sm">
         <br />
         <Typography
@@ -119,7 +119,7 @@ function PagePIT() {
         <br />
         {formStep[stage]}
       </Container>
-    </DataContext.Provider>
+
   );
 }
 

@@ -10,7 +10,7 @@ import ContainerAfastamentos from "./FormWork/ContainerAfastamentos";
 
 
 function StepPlanning(props) {
-  const { onSubmitForm, onAddAfastamento, afastamentos } = props;
+  const { onSubmitForm, afastamentos } = props;
   const [stage, setStage] = useState(0);
 
 
@@ -32,7 +32,7 @@ function StepPlanning(props) {
   }
   const formStage = [
     <>
-      <FormWork onSubmitForm={onAddAfastamento} />
+      <FormWork onSubmitForm={props.onAddAfastamento} />
       <ContainerAfastamentos afastamentos={afastamentos}/>
     </>,
     <FormActivity onSubmitForm={handleSubmitActivity} />,

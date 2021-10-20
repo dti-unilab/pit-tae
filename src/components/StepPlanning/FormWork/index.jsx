@@ -12,7 +12,6 @@ const tiposAusencias = [
 ];
 
 function FormWork(props) {
-  const { onSubmitForm } = props;
   const [tipoAusencia, setTipoAusencia] = useState(null);
   const [especificar, setEspecificar] = useState("");
   const [inicio, setInicio] = useState("");
@@ -32,11 +31,14 @@ function FormWork(props) {
           inicio,
           fim,
         };
-        onSubmitForm(novoAfastamento);
+        props.onSubmitForm(novoAfastamento);
+        
+        /*
         setTipoAusencia(null);
         setEspecificar("");
         setInicio("");
         setFim("");
+        */
       }}
     >
       <CardHeader title="3.1. Planejamento Interno - Força de Trabalho" />
