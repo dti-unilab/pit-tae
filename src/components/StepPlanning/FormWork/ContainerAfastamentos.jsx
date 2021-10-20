@@ -1,28 +1,35 @@
 import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
+import { Avatar, IconButton, ListItemAvatar, ListItemSecondaryAction } from "@mui/material";
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function ContainerAfastamentos(props) {
-  const { afastamentos } = props;
+  const { afastamentos, deleteItem } = props;
 
   return (
     <>
       <nav aria-label="main mailbox folders">
         <List>
           {afastamentos.map((afastamento, index) => (
-            <ListItem disablePadding key={afastamento.id}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItemButton>
+            <ListItem button key={afastamento.id}>
+              <ListItemAvatar>
+                <Avatar>
+                  <FolderIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={"Testo principal"}
+                secondary={"descricaoExibir"}
+              />
+              <ListItemSecondaryAction onClick={() => {deleteItem(afastamento.id)}}>
+                <IconButton edge="end" aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           ))}
         </List>

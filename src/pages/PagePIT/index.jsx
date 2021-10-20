@@ -1,12 +1,11 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../../services/api";
 import StepProfessional from "../../components/StepProfessional";
 import StepPlanning from "../../components/StepPlanning";
 import StepAuth from "../../components/StepAuth";
 import PDFGenerate from "../../components/PDFGenerate";
-
 
 function PagePIT() {
   const [data, setData] = useState({});
@@ -16,9 +15,8 @@ function PagePIT() {
   const [atividades] = useState([]);
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
+  const [regimeDeTrabalho, setRegimeDeTrabalho] = useState("Remoto integral");
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
-  
- 
 
   const formStep = [
     <StepAuth
@@ -26,29 +24,39 @@ function PagePIT() {
       onSubmitForm={handleLogin}
       erros={erros}
     />,
-    <StepProfessional 
-      onSubmitForm={handleProfessional} 
-      data={data} />,
-    <StepPlanning 
+    <StepProfessional onSubmitForm={handleProfessional} data={data} />,
+    <StepPlanning
       onAddAfastamento={handleAddAfastamento}
+      handleRemoveAfastamento={handleRemoveAfastamento}
+      regime={regimeDeTrabalho}
+      handleRegime={handleChangeRegime}
       afastamentos={afastamentos}
-      onSubmitForm={handlePlanning} 
-      data={data} />,
-    <PDFGenerate />,
+      onSubmitForm={handlePlanning}
+      data={data}
+    />,
+    <PDFGenerate data={{ user, atividades, afastamentos, data }} />,
   ];
+  function handleChangeRegime(event){
+    
+    setRegimeDeTrabalho(event.target.value);
+  }
+  function handleRemoveAfastamento(itemID) {
+    let arrayData = afastamentos;
+    let dataIndex = arrayData.findIndex((elemento) => elemento.id === itemID);
+    arrayData.splice(dataIndex, 1);
+    setAfastamentos(arrayData);
+    forceUpdate(up + 1);
+  }
 
   function handleAddAfastamento(novoAfastamento) {
     let lista = afastamentos;
     lista.push(novoAfastamento);
-    console.log("Cheguei aqui");
     setAfastamentos(lista);
-    forceUpdate(up+1);
-    
+    forceUpdate(up + 1);
   }
 
   function handleProfessional(dataProfessional) {
-    
-    setData({dataProfessional});
+    setData({ dataProfessional });
     setStage(2);
   }
   function handlePlanning(dataPlanning) {
@@ -78,7 +86,7 @@ function PagePIT() {
     setDisabledLogin(true);
     try {
       let response = await api.post("/authenticate", userAuth);
-      setUser( response.data );
+      setUser(response.data);
       setStage(1);
       setErros({ login: { valid: true, text: "" } });
     } catch (error) {
@@ -90,36 +98,34 @@ function PagePIT() {
   }
 
   return (
-
-      <Container maxWidth="sm">
-        <br />
-        <Typography
-          component="h1"
-          variant="h4"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
-          Plano Individual de Trabalho (PIT)
-        </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          Utilize o formulário abaixo para gerar o PIT.
-        </Typography>
-        <Stepper activeStep={stage} alternativeLabel>
-          <Step>
-            <StepLabel>Autenticação</StepLabel>
-          </Step>
-          <Step>
-            <StepLabel>Dados da Unidade e Servidor</StepLabel>
-          </Step>
-          <Step>
-            <StepLabel>Planejamento, Atividades e Metas</StepLabel>
-          </Step>
-        </Stepper>
-        <br />
-        {formStep[stage]}
-      </Container>
-
+    <Container maxWidth="sm">
+      <br />
+      <Typography
+        component="h1"
+        variant="h4"
+        align="center"
+        color="textPrimary"
+        gutterBottom
+      >
+        Plano Individual de Trabalho (PIT)
+      </Typography>
+      <Typography variant="h5" align="center" color="textSecondary" paragraph>
+        Utilize o formulário abaixo para gerar o PIT.
+      </Typography>
+      <Stepper activeStep={stage} alternativeLabel>
+        <Step>
+          <StepLabel>Autenticação</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Dados da Unidade e Servidor</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Planejamento, Atividades e Metas</StepLabel>
+        </Step>
+      </Stepper>
+      <br />
+      {formStep[stage]}
+    </Container>
   );
 }
 

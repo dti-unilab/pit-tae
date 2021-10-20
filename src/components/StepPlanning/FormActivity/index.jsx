@@ -6,12 +6,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-export default function FormActivity() {
-  const [value, setValue] = React.useState("female");
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+
+export default function FormActivity(props) {
+
   return (
     <>
       <CardHeader title="Atividades em Trabalho Remoto ou sob Revezamento" />
@@ -39,14 +37,14 @@ export default function FormActivity() {
         atividades desempenhadas pelo servidor e o regime de trabalho remoto.
       </Typography>
       <br />
-
+          
       <FormControl component="fieldset">
         <FormLabel component="legend">Regime de Trabalho</FormLabel>
         <RadioGroup
           aria-label="gender"
           name="controlled-radio-buttons-group"
-          value={value}
-          onChange={handleChange}
+          value={props.regime}
+          onChange={props.handleChange}
         >
           <FormControlLabel
             value="Remoto integral"

@@ -1,7 +1,7 @@
 import FormActivity from "./FormActivity";
 import FormGoal from "./FormGoal";
 import FormWork from "./FormWork";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -27,15 +27,15 @@ function StepPlanning(props) {
   }
 
 
-  function handleRemoveAfastamento(itemId) {
-    //To remove afastamento from context.
-  }
   const formStage = [
     <>
       <FormWork onSubmitForm={props.onAddAfastamento} />
-      <ContainerAfastamentos afastamentos={afastamentos}/>
+      <ContainerAfastamentos afastamentos={afastamentos} deleteItem={props.handleRemoveAfastamento}/>
     </>,
-    <FormActivity onSubmitForm={handleSubmitActivity} />,
+    <FormActivity
+    regime={props.regime}
+    handleChange={props.handleRegime}
+    onSubmitForm={handleSubmitActivity} />,
     <FormGoal />,
   ];
 

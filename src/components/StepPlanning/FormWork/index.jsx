@@ -32,13 +32,12 @@ function FormWork(props) {
           fim,
         };
         props.onSubmitForm(novoAfastamento);
-        
-        /*
+
         setTipoAusencia(null);
         setEspecificar("");
         setInicio("");
         setFim("");
-        */
+
       }}
     >
       <CardHeader title="3.1. Planejamento Interno - Força de Trabalho" />
