@@ -33,9 +33,15 @@ function FormGoal(props) {
           atividades,
           publicoMetas,
           frequenciaPeriodo,
-          expectativaObservacao
+          expectativaObservacao,
         };
         props.onSubmitForm(novaAtividade);
+        setTipoAtividade(null);
+        setSequenciaOrdem(0);
+        setAtividades("");
+        setPublicoMetas("");
+        setFrequenciaPeriodo("");
+        setExpectativaObservacao("");
       }}
     >
       <CardHeader title="Metas de Desempenho" />
@@ -62,7 +68,7 @@ function FormGoal(props) {
           setSequenciaOrdem(event.target.value);
         }}
         id="sequencia"
-        label="sequencia"
+        label={tipoAtividade.id === 0 ? "Sequência" : "Ordem"}
         variant="outlined"
         margin="normal"
         required={true}
@@ -86,31 +92,42 @@ function FormGoal(props) {
           setPublicoMetas(event.target.value);
         }}
         id="publicoAtendido"
-        label="Público Atendido"
+        label={
+          tipoAtividade.id === 0 ? "Público Atendido" : "Meta de desempenho"
+        }
         variant="outlined"
         margin="normal"
         required={true}
         fullWidth
       />
-      <TextField
-        value={frequenciaPeriodo}
-        onChange={(event) => {
-          setFrequenciaPeriodo(event.target.value);
-        }}
-        id="periodo"
-        label="Período Para atingimento da meta"
-        variant="outlined"
-        margin="normal"
-        required={true}
-        fullWidth
-      />
+      {tipoAtividade.id === 0 ? (
+        <>Campo diferente</>
+      ) : (
+        <TextField
+          value={frequenciaPeriodo}
+          onChange={(event) => {
+            setFrequenciaPeriodo(event.target.value);
+          }}
+          id="periodo"
+          label="Período Para atingimento da meta"
+          variant="outlined"
+          margin="normal"
+          required={true}
+          fullWidth
+        />
+      )}
+
       <TextField
         value={expectativaObservacao}
         onChange={(event) => {
           setExpectativaObservacao(event.target.value);
         }}
         id="expectativa"
-        label="Expectativa de melhoria da atividade durante o trabalho remoto"
+        label={
+          tipoAtividade.id === 0
+            ? "Expectativa de melhoria da atividade durante o trabalho remoto"
+            : "Observação"
+        }
         variant="outlined"
         margin="normal"
         required={true}

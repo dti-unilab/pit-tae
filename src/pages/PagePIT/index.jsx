@@ -13,7 +13,7 @@ function PagePIT() {
   const [up, forceUpdate] = useState(0);
   const [user, setUser] = useState({});
   const [atividades, setAtividades] = useState([]);
-  const [stage, setStage] = useState(2);
+  const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [regimeDeTrabalho, setRegimeDeTrabalho] = useState("Remoto integral");
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
@@ -28,12 +28,13 @@ function PagePIT() {
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
       onAddAtividade={handleAddAtividade}
+      handleRemoveAtividade={handleRemoveAtividade}
       handleRemoveAfastamento={handleRemoveAfastamento}
       regime={regimeDeTrabalho}
       handleRegime={handleChangeRegime}
       afastamentos={afastamentos}
       atividades={atividades}
-      onSubmitForm={handlePlanning}
+      onFinishPlanning={handleFinishPlanning}
       data={data}
     />,
     <PDFGenerate data={{ user, atividades, afastamentos, data }} />,
@@ -65,13 +66,19 @@ function PagePIT() {
     forceUpdate(up + 1);
   }
 
+  function handleRemoveAtividade(itemID) {
+    let arrayData = atividades;
+    let dataIndex = arrayData.findIndex((elemento) => elemento.id === itemID);
+    arrayData.splice(dataIndex, 1);
+    setAtividades(arrayData);
+    forceUpdate(up + 1);
+  }
 
   function handleProfessional(dataProfessional) {
     setData({ dataProfessional });
     setStage(2);
   }
-  function handlePlanning(dataPlanning) {
-    console.log(dataPlanning);
+  function handleFinishPlanning() {
     setStage(3);
   }
 
