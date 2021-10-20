@@ -1,5 +1,5 @@
 import FormActivity from "./FormActivity";
-import FormGoal from "./FormGoal";
+import FormGoal from "./FormGoalOLD";
 import FormWork from "./FormWork";
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
@@ -7,11 +7,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, CardActions } from "@material-ui/core";
 import ContainerAfastamentos from "./FormWork/ContainerAfastamentos";
+import ContainerAtividades from "./FormGoal/ContainerAtividades";
 
 
 function StepPlanning(props) {
-  const { onSubmitForm, afastamentos } = props;
-  const [stage, setStage] = useState(0);
+  const { afastamentos, atividades } = props;
+  const [stage, setStage] = useState(2);
 
 
   function handleSubmitActivity() {
@@ -22,7 +23,7 @@ function StepPlanning(props) {
     if (next < 3) {
       setStage(next);
     } else {
-      onSubmitForm();
+      //onSubmitForm();
     }
   }
 
@@ -36,7 +37,10 @@ function StepPlanning(props) {
     regime={props.regime}
     handleChange={props.handleRegime}
     onSubmitForm={handleSubmitActivity} />,
-    <FormGoal />,
+    <>
+    <FormGoal onSubmitForm={props.onAddAtividade}/>
+    <ContainerAtividades atividades={atividades} deleteItem={props.handleRemoveAtividade}/>
+    </>,
   ];
 
   return (

@@ -12,8 +12,8 @@ function PagePIT() {
   const [afastamentos, setAfastamentos] = useState([]);
   const [up, forceUpdate] = useState(0);
   const [user, setUser] = useState({});
-  const [atividades] = useState([]);
-  const [stage, setStage] = useState(0);
+  const [atividades, setAtividades] = useState([]);
+  const [stage, setStage] = useState(2);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [regimeDeTrabalho, setRegimeDeTrabalho] = useState("Remoto integral");
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
@@ -27,10 +27,12 @@ function PagePIT() {
     <StepProfessional onSubmitForm={handleProfessional} data={data} />,
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
+      onAddAtividade={handleAddAtividade}
       handleRemoveAfastamento={handleRemoveAfastamento}
       regime={regimeDeTrabalho}
       handleRegime={handleChangeRegime}
       afastamentos={afastamentos}
+      atividades={atividades}
       onSubmitForm={handlePlanning}
       data={data}
     />,
@@ -54,6 +56,15 @@ function PagePIT() {
     setAfastamentos(lista);
     forceUpdate(up + 1);
   }
+
+  function handleAddAtividade(novaAtividade) {
+    
+    let lista = atividades;
+    lista.push(novaAtividade);
+    setAtividades(lista);
+    forceUpdate(up + 1);
+  }
+
 
   function handleProfessional(dataProfessional) {
     setData({ dataProfessional });

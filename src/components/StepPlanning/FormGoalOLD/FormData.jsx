@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import {
   FormControl,
@@ -12,16 +12,29 @@ import {
 
 function FormData(props) {
   const { tipo } = props;
-  const { onSubmitForm } = props;
-  const [frequencia, setFrequencia] = React.useState("female");
+
+  const [ordem, setOrdem] = useState(1);
+  const [sequencia, setSequencia] = useState(1);
+  const [atividade, setAtividade] = useState("");
+  const [publicoAtendido, setPublicoAtendido] = useState("");
+  const [frequencia, setFrequencia] = useState("Turnos Manhã e Tarde");
+  const [expectativa, setExpectativa] = useState("");
+  const [meta, setMeta] = useState("");
+  const [periodo, setPeriodo] = useState("");
+  const [observacao, setObservacao] = useState("");
 
   const handleChangeFrequencia = (event) => {
     setFrequencia(event.target.value);
   };
+
   function Form123() {
     return (
       <>
         <TextField
+          value={ordem}
+          onChange={(event) => {
+            setOrdem(event.target.value);
+          }}
           id="ordem1"
           label="Ordem de prioridade"
           variant="outlined"
@@ -30,6 +43,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={atividade}
+          onChange={(event) => {
+            setAtividade(event.target.value);
+          }}
           id="Atividade1"
           label="Atividade"
           variant="outlined"
@@ -38,6 +55,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={meta}
+          onChange={(event) => {
+            setMeta(event.target.value);
+          }}
           id="fieldMeta1"
           label="Meta de desempenho"
           variant="outlined"
@@ -46,6 +67,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={periodo}
+          onChange={(event) => {
+            setPeriodo(event.target.value);
+          }}
           id="fieldPeriodo1"
           label="Período para atingimento da meta"
           variant="outlined"
@@ -54,6 +79,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={observacao}
+          onChange={(event) => {
+            setObservacao(event.target.value);
+          }}
           id="fieldObs"
           label="Observação"
           variant="outlined"
@@ -68,6 +97,10 @@ function FormData(props) {
     return (
       <>
         <TextField
+          value={sequencia}
+          onChange={(event) => {
+            setSequencia(event.target.value);
+          }}
           id="fieldSequencia"
           label="Sequência"
           variant="outlined"
@@ -76,6 +109,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={atividade}
+          onChange={(event) => {
+            setAtividade(event.target.value);
+          }}
           id="fieldAtividade"
           label="Atividade"
           variant="outlined"
@@ -84,6 +121,10 @@ function FormData(props) {
           fullWidth
         />
         <TextField
+          value={publicoAtendido}
+          onChange={(event) => {
+            setPublicoAtendido(event.target.value);
+          }}
           id="fieldPublico"
           label="Público Atendido"
           variant="outlined"
@@ -119,6 +160,10 @@ function FormData(props) {
           </RadioGroup>
         </FormControl>
         <TextField
+          value={expectativa}
+          onChange={(event) => {
+            setExpectativa(event.target.value);
+          }}
           id="expectativa"
           label="Expectativa de melhoria da atividade durante o trabalho remoto"
           variant="outlined"
@@ -128,16 +173,32 @@ function FormData(props) {
       </>
     );
   }
-  const listForms = [<Form0 />, <Form123 />, <Form123 />, <Form123 />];
+  
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({ dados: "Data teste" });
+       /*
+        const novaAtividade = {
+          id: Date.now(),
+          tipo,
+          sequencia,
+          ordem,
+          atividade,
+          publicoAtendido,
+          meta,
+          frequencia,
+          periodo,
+          expectativa,
+          observacao
+        };
+        props.submitForm(novaAtividade);
+        */
+       
       }}
     >
-      Meu Form Que sera o form data
-      {listForms[tipo.id]}
+      
+      {tipo.id === 0 ? <Form0 /> : <Form123 />}
       <Button
         type="submit"
         variant="contained"
