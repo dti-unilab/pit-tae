@@ -75,7 +75,7 @@ function FormGoal(props) {
         )}
       />
       {tipoAtividade === null ? (
-        ""
+        "Selecione o tipo de Atividade"
       ) : (
         <>
           <TextField
