@@ -1,6 +1,6 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import StepProfessional from "../../components/StepProfessional";
 import StepPlanning from "../../components/StepPlanning";
@@ -10,12 +10,25 @@ import { DataContext } from "../../services/DataContext";
 
 function PagePIT() {
   const [data, setData] = useState({});
-  const [afastamentos] = useState([]);
+  const [afastamentos, setAfastamentos] = useState([]);
   const [user, setUser] = useState({});
   const [atividades] = useState([]);
   const [stage, setStage] = useState(0);
   const [disabledLogin, setDisabledLogin] = useState(false);
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
+  
+
+  useEffect(() => {
+    console.log("Alterou afastamentos");
+  },[afastamentos]);
+
+  function handleAddAfastamento(novoAfastamento) {
+    let lista = afastamentos;
+    lista.push(novoAfastamento);
+    console.log("Cheguei aqui");
+    setAfastamentos(lista);
+  }
+
   const formStep = [
     <StepAuth
       disabledLogin={disabledLogin}
@@ -26,10 +39,13 @@ function PagePIT() {
       onSubmitForm={handleProfessional} 
       data={data} />,
     <StepPlanning 
+      onAddAfastamento={handleAddAfastamento}
+      afastamentos={afastamentos}
       onSubmitForm={handlePlanning} 
       data={data} />,
     <PDFGenerate />,
   ];
+
   function handleProfessional(dataProfessional) {
     
     setData({dataProfessional});

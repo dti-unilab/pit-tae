@@ -1,16 +1,18 @@
 import FormActivity from "./FormActivity";
 import FormGoal from "./FormGoal";
 import FormWork from "./FormWork";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, CardActions } from "@material-ui/core";
-import ContainerList from "./FormWork/ContainerList";
+import ContainerAfastamentos from "./FormWork/ContainerAfastamentos";
+
 
 function StepPlanning(props) {
-  const { onSubmitForm } = props;
+  const { onSubmitForm, onAddAfastamento, afastamentos } = props;
   const [stage, setStage] = useState(0);
+
 
   function handleSubmitActivity() {
     console.log("Submeteu Activity");
@@ -24,8 +26,15 @@ function StepPlanning(props) {
     }
   }
 
+
+  function handleRemoveAfastamento(itemId) {
+    //To remove afastamento from context.
+  }
   const formStage = [
-    <FormWork />,
+    <>
+      <FormWork onSubmitForm={onAddAfastamento} />
+      <ContainerAfastamentos afastamentos={afastamentos}/>
+    </>,
     <FormActivity onSubmitForm={handleSubmitActivity} />,
     <FormGoal />,
   ];

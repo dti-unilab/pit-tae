@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
-import { DataContext } from "../../services/DataContext";
+import React from "react";
+
 
 function PDFGenerate(){
-  const dataContext = useContext(DataContext);
-  console.log("PDF");
-  console.log(dataContext);
+
   return (
     <>
         PDF Generate

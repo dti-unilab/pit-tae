@@ -1,39 +1,42 @@
 import { Autocomplete, Button, TextField, Typography } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
-import React, { useState, useContext } from "react";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import ContainerList from "./ContainerList";
-import { DataContext } from "../../../services/DataContext";
+import React, { useState } from "react";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 
-
-const absences = [
-  { description: "Afastamento" },
-  { description: "Licença" },
-  { description: "Férias" },
-  { description: "Outros tipos de ausências previstas em Lei" },
+const tiposAusencias = [
+  { descricao: "Afastamento" },
+  { descricao: "Licença" },
+  { descricao: "Férias" },
+  { descricao: "Outros tipos de ausências previstas em Lei" },
 ];
 
 function FormWork(props) {
-  const dataContext = useContext(DataContext);
   const { onSubmitForm } = props;
-  const [absence, setAbsence] = useState(absences[0]);
-  const handleChangeAbsence = (event, values) => {
-    setAbsence(values);
+  const [tipoAusencia, setTipoAusencia] = useState(null);
+  const [especificar, setEspecificar] = useState("");
+  const [inicio, setInicio] = useState("");
+  const [fim, setFim] = useState("");
+  const handleChangeTipoAusencia = (event, values) => {
+    setTipoAusencia(values);
   };
-
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        dataContext.afastamentos.push("Eu sou eu");
-        console.log(dataContext);
-        console.log("Vou setar");
-        //dataContext.setData({aaa: "123"});
-        console.log(dataContext);
-        //onSubmitForm();
-
+        const novoAfastamento = {
+          id: Date.now(),
+          tipoAusencia,
+          especificar,
+          inicio,
+          fim,
+        };
+        onSubmitForm(novoAfastamento);
+        setTipoAusencia(null);
+        setEspecificar("");
+        setInicio("");
+        setFim("");
       }}
     >
       <CardHeader title="3.1. Planejamento Interno - Força de Trabalho" />
@@ -52,10 +55,10 @@ function FormWork(props) {
       <Autocomplete
         id="cargaHoraria"
         name="cargaHoraria"
-        options={absences}
-        getOptionLabel={(option) => option.description}
-        onChange={handleChangeAbsence}
-        value={absence}
+        options={tiposAusencias}
+        getOptionLabel={(option) => option.descricao}
+        onChange={handleChangeTipoAusencia}
+        value={tipoAusencia}
         fullWidth
         renderInput={(params) => (
           <TextField
@@ -68,7 +71,11 @@ function FormWork(props) {
         )}
       />
       <TextField
-        id="cargoEfetivo"
+        value={especificar}
+        onChange={(event) => {
+          setEspecificar(event.target.value);
+        }}
+        id="especificar"
         label="Especificar"
         variant="outlined"
         margin="normal"
@@ -77,33 +84,47 @@ function FormWork(props) {
       />
 
       <TextField
+        value={inicio}
+        onChange={(event) => {
+          setInicio(event.target.value);
+        }}
         type="date"
         InputLabelProps={{
           shrink: true,
         }}
-        id="dadosGestao"
+        required={true}
+        id="dataInicio"
         label="Início"
         variant="outlined"
         margin="normal"
         fullWidth
       />
       <TextField
+        value={fim}
+        onChange={(event) => {
+          setFim(event.target.value);
+        }}
         type="date"
         InputLabelProps={{
           shrink: true,
         }}
-        id="dadosGestao"
+        required={true}
+        id="dataFim"
         label="Fim"
         variant="outlined"
         margin="normal"
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary" endIcon={<AddCircleIcon />}>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        endIcon={<AddCircleIcon />}
+      >
         Adicionar
       </Button>
     </form>
-    
   );
 }
 export default FormWork;

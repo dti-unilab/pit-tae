@@ -8,27 +8,23 @@ import Divider from "@mui/material/Divider";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
 
-export default function ContainerList() {
+export default function ContainerAfastamentos(props) {
+  const { afastamentos } = props;
+
   return (
     <>
       <nav aria-label="main mailbox folders">
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" secondary="Drafts" />
-            </ListItemButton>
-          </ListItem>
+          {afastamentos.map((afastamento, index) => (
+            <ListItem disablePadding key={afastamento.id}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </nav>
       <Divider />
