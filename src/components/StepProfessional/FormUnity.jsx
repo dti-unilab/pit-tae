@@ -14,6 +14,7 @@ function FormUnity(props) {
   const [unidadeMaxima, setUnidadeMaxima] = useState("");
   const [unidadeExercicio, setUnidadeExercicio] = useState("");
   const [horario, setHorario] = useState("");
+  const [horarioExercicio, setHorarioExercicio] = useState("");
   const [periodo, setPeriodo] = useState(periodos[0]);
   const [campus, setCampus] = useState(listCampus[0]);
 
@@ -28,7 +29,7 @@ function FormUnity(props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmitForm({unidadeMaxima, horario, unidadeExercicio, campus, periodo});
+        onSubmitForm({unidadeMaxima, horario, unidadeExercicio, campus, periodo, horarioExercicio});
       }}
     >
       <CardHeader title="2.1. Dados da Unidade" />
@@ -67,6 +68,18 @@ function FormUnity(props) {
         margin="normal"
         required={true}
         fullWidth
+      />
+      <TextField
+        value={horarioExercicio}
+        onChange={(event) => {
+          setHorarioExercicio(event.target.value);
+        }}
+        id="horarioFuncionamento2"
+        label="Horário de Funcionamento da Unidade de Exercício"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        required={true}
       />
       <Autocomplete
         id="campus"

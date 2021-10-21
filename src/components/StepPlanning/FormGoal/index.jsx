@@ -6,8 +6,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-  TextField,
-  Typography,
+  TextField
 } from "@material-ui/core";
 import CardHeader from "@mui/material/CardHeader";
 import React, { useState } from "react";

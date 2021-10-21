@@ -22,8 +22,8 @@ export default function ContainerAtividades(props) {
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
-                primary={"Testo principal"}
-                secondary={"descricaoExibir"}
+                primary={atividade.tipoAtividade.descricao}
+                secondary={atividade.atividades}
               />
               <ListItemSecondaryAction onClick={() => {deleteItem(atividade.id)}}>
                 <IconButton edge="end" aria-label="delete">

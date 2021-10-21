@@ -12,6 +12,7 @@ export default function ContainerAfastamentos(props) {
 
   return (
     <>
+
       <nav aria-label="main mailbox folders">
         <List>
           {afastamentos.map((afastamento, index) => (
@@ -22,8 +23,8 @@ export default function ContainerAfastamentos(props) {
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
-                primary={"Testo principal"}
-                secondary={"descricaoExibir"}
+                primary={afastamento.tipoAusencia.descricao}
+                secondary={afastamento.especificar}
               />
               <ListItemSecondaryAction onClick={() => {deleteItem(afastamento.id)}}>
                 <IconButton edge="end" aria-label="delete">

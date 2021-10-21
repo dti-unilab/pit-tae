@@ -8,7 +8,8 @@ import StepAuth from "../../components/StepAuth";
 import PDFGenerate from "../../components/PDFGenerate";
 
 function PagePIT() {
-  const [data, setData] = useState({});
+
+  const [dataProfessional, setDataProfessional] = useState({});
   const [afastamentos, setAfastamentos] = useState([]);
   const [up, forceUpdate] = useState(0);
   const [user, setUser] = useState({});
@@ -24,7 +25,7 @@ function PagePIT() {
       onSubmitForm={handleLogin}
       erros={erros}
     />,
-    <StepProfessional onSubmitForm={handleProfessional} data={data} />,
+    <StepProfessional onSubmitForm={handleProfessional} data={dataProfessional} />,
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
       onAddAtividade={handleAddAtividade}
@@ -35,12 +36,14 @@ function PagePIT() {
       afastamentos={afastamentos}
       atividades={atividades}
       onFinishPlanning={handleFinishPlanning}
-      data={data}
+      data={dataProfessional}
     />,
-    <PDFGenerate data={{ user, atividades, afastamentos, data }} />,
+    <PDFGenerate
+      back={handleBack}
+      allData={{ user, atividades, afastamentos, dataProfessional, regimeDeTrabalho }}
+    />,
   ];
-  function handleChangeRegime(event){
-    
+  function handleChangeRegime(event) {
     setRegimeDeTrabalho(event.target.value);
   }
   function handleRemoveAfastamento(itemID) {
@@ -59,7 +62,6 @@ function PagePIT() {
   }
 
   function handleAddAtividade(novaAtividade) {
-    
     let lista = atividades;
     lista.push(novaAtividade);
     setAtividades(lista);
@@ -74,12 +76,15 @@ function PagePIT() {
     forceUpdate(up + 1);
   }
 
-  function handleProfessional(dataProfessional) {
-    setData({ dataProfessional });
+  function handleProfessional(data) {
+    setDataProfessional(data);
     setStage(2);
   }
   function handleFinishPlanning() {
     setStage(3);
+  }
+  function handleBack() {
+    setStage(1);
   }
 
   async function handleLogin(userAuth) {
@@ -116,7 +121,9 @@ function PagePIT() {
   }
 
   return (
-    <Container maxWidth="sm">
+    
+    <Container maxWidth={stage === 3 ? "md" : "sm"}>
+
       <br />
       <Typography
         component="h1"
