@@ -61,6 +61,9 @@ function StepAuth(props) {
               onChange={(event) => {
                 setLogin(event.target.value);
               }}
+              InputLabelProps={{
+                shrink: true,
+              }}
               error={!errorLogin.valid}
               onBlur={validateLogin}
               helperText={errorLogin.text}
@@ -76,6 +79,9 @@ function StepAuth(props) {
               value={senha}
               onChange={(event) => {
                 setSenha(event.target.value);
+              }}
+              InputLabelProps={{
+                shrink: true,
               }}
               error={!errorPassword.valid}
               onBlur={validatePassword}
