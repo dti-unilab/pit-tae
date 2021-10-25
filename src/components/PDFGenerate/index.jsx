@@ -13,9 +13,7 @@ function PDFGenerate(props) {
       fileName: `PIT ${new Date().getFullYear()}`,
     });
   };
-  //const now = new Date();
-  //const dataStr =
-  //  now.getDate() + "/" + (1 + now.getMonth()) + "/" + now.getFullYear();
+  
 
   return (
     <>

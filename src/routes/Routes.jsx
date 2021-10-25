@@ -6,7 +6,7 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/pit-tae">
+        <Route exact path="/pit-tae-teste">
           <PagePIT />
         </Route>
         <Route>

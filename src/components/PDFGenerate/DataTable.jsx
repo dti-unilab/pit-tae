@@ -67,6 +67,14 @@ export default function DataTable(props) {
   let atividades3 = props.allData.atividades.filter(
     (atividade) => atividade.tipoAtividade.id === 3
   );
+  /**
+
+   * @param {String} date
+   */
+  function toBrFormat(date) {
+    const now = new Date(date);
+    return now.getDate() + "/" + (1 + now.getMonth()) + "/" + now.getFullYear();
+  }
 
   return (
     <Container maxWidth="lg">
@@ -231,7 +239,7 @@ export default function DataTable(props) {
                 <td>{afastamento.tipoAusencia.descricao}</td>
                 <td>{afastamento.especificar}</td>
                 <td>Período</td>
-                <td>{afastamento.inicio + " - " + afastamento.fim}</td>
+                <td>{toBrFormat(afastamento.inicio) + " - " + toBrFormat(afastamento.fim)}</td>
               </tr>
             ))}
           </tbody>
