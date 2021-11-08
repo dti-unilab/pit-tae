@@ -78,7 +78,6 @@ export default function DataTable(props) {
 
   return (
     <Container maxWidth="lg">
-      {console.log(props.allData)}
       <Box
         sx={{
           mx: "auto",

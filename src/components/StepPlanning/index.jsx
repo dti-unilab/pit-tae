@@ -14,7 +14,7 @@ function StepPlanning(props) {
   const [stage, setStage] = useState(0);
 
   function handleSubmitActivity() {
-    console.log("Submeteu Activity");
+
   }
   function handlerNextStep() {
     const next = stage + 1;

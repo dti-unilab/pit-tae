@@ -11,7 +11,6 @@ function FormBoss(props) {
       onSubmit={(event) => {
         event.preventDefault();
         onSubmitForm({ nome, cargo });
-        //console.log({ nome, cargo });
       }}
     >
       <CardHeader title="2.2. Dados da Chefia Imediata" />
