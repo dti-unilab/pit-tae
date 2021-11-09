@@ -21,7 +21,6 @@ const tiposAtividade = [
 
 function FormGoal(props) {
   const [tipoAtividade, setTipoAtividade] = useState(tiposAtividade[0]);
-  const [sequenciaOrdem, setSequenciaOrdem] = useState(1);
   const [atividades, setAtividades] = useState("");
   const [publicoMetas, setPublicoMetas] = useState("");
   const [frequenciaPeriodo, setFrequenciaPeriodo] = useState("");
@@ -37,11 +36,9 @@ function FormGoal(props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-
         const novaAtividade = {
           id: Date.now(),
           tipoAtividade,
-          sequenciaOrdem,
           atividades,
           publicoMetas,
           frequenciaPeriodo,
@@ -49,7 +46,6 @@ function FormGoal(props) {
         };
         props.onSubmitForm(novaAtividade);
         setTipoAtividade(null);
-        setSequenciaOrdem(0);
         setAtividades("");
         setPublicoMetas("");
         setFrequenciaPeriodo("");
@@ -77,24 +73,7 @@ function FormGoal(props) {
         "Selecione o tipo de Atividade"
       ) : (
         <>
-          <TextField
-            value={sequenciaOrdem}
-            onChange={(event) => {
-              setSequenciaOrdem(event.target.value);
-            }}
-            id="sequencia"
-            label={
-              tipoAtividade === null
-                ? "Sequencia"
-                : tipoAtividade.id === 0
-                ? "Sequência"
-                : "Ordem"
-            }
-            variant="outlined"
-            margin="normal"
-            required={true}
-            fullWidth
-          />
+          
           <TextField
             value={atividades}
             onChange={(event) => {

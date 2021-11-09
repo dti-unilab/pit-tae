@@ -5,6 +5,7 @@ import { savePDF } from "@progress/kendo-react-pdf";
 import { Box } from "@material-ui/system";
 
 function PDFGenerate(props) {
+  const { back } = props;
   const contentArea = useRef(null);
   const handleExportWithMethod = (event) => {
     savePDF(contentArea.current, {
@@ -33,9 +34,10 @@ function PDFGenerate(props) {
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            back();
           }}
         >
-          <Button type="submit" onClick={props.back} variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Voltar
           </Button>
         </form>

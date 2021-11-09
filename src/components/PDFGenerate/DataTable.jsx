@@ -103,7 +103,7 @@ export default function DataTable(props) {
           </tr>
           <tr>
             <td colSpan="2">
-              Plano de Trabalho nº 202110{props.allData.user.id}/2021
+              Plano de Trabalho nº 202111{props.allData.user.id}/2021
             </td>
           </tr>
         </thead>
@@ -337,7 +337,7 @@ export default function DataTable(props) {
 
             {atividades0.map((atividade, index) => (
               <tr key={atividade.id}>
-                <td>{atividade.sequenciaOrdem}</td>
+                <td>{index+1}</td>
                 <td>{atividade.atividades}</td>
                 <td>{atividade.publicoMetas}</td>
                 <td>{atividade.frequenciaPeriodo}</td>
@@ -362,12 +362,12 @@ export default function DataTable(props) {
               <td>Meta de desempenho</td>
               <td>Período para atingimento da meta</td>
               <td>
-                Expectativa de melhoria da atividade durante o trabalho remoto
+                Observação
               </td>
             </tr>
             {atividades1.map((atividade, index) => (
               <tr key={atividade.id}>
-                <td>{atividade.sequenciaOrdem}</td>
+                <td>{index+1}</td>
                 <td>{atividade.atividades}</td>
                 <td>{atividade.publicoMetas}</td>
                 <td>{atividade.frequenciaPeriodo}</td>
@@ -392,12 +392,12 @@ export default function DataTable(props) {
               <td>Meta de desempenho</td>
               <td>Período para atingimento da meta</td>
               <td>
-                Expectativa de melhoria da atividade durante o trabalho remoto
+                Observação
               </td>
             </tr>
             {atividades2.map((atividade, index) => (
               <tr key={atividade.id}>
-                <td>{atividade.sequenciaOrdem}</td>
+                <td>{index+1}</td>
                 <td>{atividade.atividades}</td>
                 <td>{atividade.publicoMetas}</td>
                 <td>{atividade.frequenciaPeriodo}</td>
@@ -422,12 +422,12 @@ export default function DataTable(props) {
               <td>Meta de desempenho</td>
               <td>Período para atingimento da meta</td>
               <td>
-                Expectativa de melhoria da atividade durante o trabalho remoto
+                Observação
               </td>
             </tr>
             {atividades3.map((atividade, index) => (
               <tr key={atividade.id}>
-                <td>{atividade.sequenciaOrdem}</td>
+                <td>{index+1}</td>
                 <td>{atividade.atividades}</td>
                 <td>{atividade.publicoMetas}</td>
                 <td>{atividade.frequenciaPeriodo}</td>
