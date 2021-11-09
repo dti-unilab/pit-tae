@@ -8,9 +8,7 @@ import StepAuth from "../../components/StepAuth";
 import PDFGenerate from "../../components/PDFGenerate";
 import AccordionTutorial from "../../components/AccordionTutorial";
 
-
 function PagePIT() {
-
   const [dataProfessional, setDataProfessional] = useState({});
   const [afastamentos, setAfastamentos] = useState([]);
   const [up, forceUpdate] = useState(0);
@@ -22,16 +20,16 @@ function PagePIT() {
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
 
   const formStep = [
-    <>
-      <StepAuth
-        disabledLogin={disabledLogin}
-        onSubmitForm={handleLogin}
-        erros={erros}
-      />
-      <AccordionTutorial/>
-    </>
-    ,
-    <StepProfessional onSubmitForm={handleProfessional} dataProfessional={dataProfessional} />,
+    <StepAuth
+      disabledLogin={disabledLogin}
+      onSubmitForm={handleLogin}
+      erros={erros}
+    />,
+
+    <StepProfessional
+      onSubmitForm={handleProfessional}
+      dataProfessional={dataProfessional}
+    />,
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
       onAddAtividade={handleAddAtividade}
@@ -46,7 +44,13 @@ function PagePIT() {
     />,
     <PDFGenerate
       back={handleBack}
-      allData={{ user, atividades, afastamentos, dataProfessional, regimeDeTrabalho }}
+      allData={{
+        user,
+        atividades,
+        afastamentos,
+        dataProfessional,
+        regimeDeTrabalho,
+      }}
     />,
   ];
   function handleChangeRegime(event) {
@@ -127,9 +131,7 @@ function PagePIT() {
   }
 
   return (
-    
     <Container maxWidth={stage === 3 ? "md" : "sm"}>
-
       <br />
       <Typography
         component="h1"
@@ -156,7 +158,6 @@ function PagePIT() {
       </Stepper>
       <br />
       {formStep[stage]}
-      
     </Container>
   );
 }
