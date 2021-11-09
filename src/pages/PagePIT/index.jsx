@@ -6,6 +6,8 @@ import StepProfessional from "../../components/StepProfessional";
 import StepPlanning from "../../components/StepPlanning";
 import StepAuth from "../../components/StepAuth";
 import PDFGenerate from "../../components/PDFGenerate";
+import AccordionTutorial from "../../components/AccordionTutorial";
+
 
 function PagePIT() {
 
@@ -20,11 +22,15 @@ function PagePIT() {
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
 
   const formStep = [
-    <StepAuth
-      disabledLogin={disabledLogin}
-      onSubmitForm={handleLogin}
-      erros={erros}
-    />,
+    <>
+      <StepAuth
+        disabledLogin={disabledLogin}
+        onSubmitForm={handleLogin}
+        erros={erros}
+      />
+      <AccordionTutorial/>
+    </>
+    ,
     <StepProfessional onSubmitForm={handleProfessional} dataProfessional={dataProfessional} />,
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
@@ -150,6 +156,7 @@ function PagePIT() {
       </Stepper>
       <br />
       {formStep[stage]}
+      
     </Container>
   );
 }

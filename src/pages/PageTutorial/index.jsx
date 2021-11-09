@@ -24,7 +24,6 @@ function PageTutorial() {
         src={videoTutorial}
         poster={posterTutorial}
         primaryColor="#3b0304"
-        // other props
       />
     </Container>
   );
