@@ -2,9 +2,9 @@ import { Button, CardHeader, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 function FormBoss(props) {
-  const { onSubmitForm } = props;
-  const [nome, setNome] = useState("");
-  const [cargo, setCargo] = useState("");
+  const { onSubmitForm, dadosChefe } = props;
+  const [nome, setNome] = useState(dadosChefe.nome === undefined ? "" : dadosChefe.nome);
+  const [cargo, setCargo] = useState(dadosChefe.cargo === undefined ? "" : dadosChefe.cargo);
 
   return (
     <form

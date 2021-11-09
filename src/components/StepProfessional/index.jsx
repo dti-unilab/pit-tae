@@ -7,9 +7,18 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 function StepProfessional(props) {
-  const { onSubmitForm } = props;
-  const [dadosUnidade, setDadosUnidade] = useState({});
-  const [dadosServidor, setDadosServidor] = useState({});
+  const { onSubmitForm, dataProfessional } = props;
+  const [dadosUnidade, setDadosUnidade] = useState(
+    dataProfessional.dadosUnidade === undefined
+      ? {}
+      : dataProfessional.dadosUnidade
+  );
+  const [dadosServidor, setDadosServidor] = useState(
+    dataProfessional.dadosServidor === undefined
+      ? {}
+      : dataProfessional.dadosServidor
+  );
+  const dadosChefe =  dataProfessional.dadosChefe === undefined ? {} : dataProfessional.dadosChefe;
   const [stage, setStage] = useState(0);
 
   function handleSubmitUnity(data) {
@@ -23,14 +32,17 @@ function StepProfessional(props) {
   }
 
   function handleSubmitBoss(data) {
-    onSubmitForm({ dadosUnidade, dadosServidor, dadosChefe: data });
+    onSubmitForm({ dadosUnidade, dadosServidor, dadosChefe : data });
     setStage(0);
   }
 
   const formStage = [
-    <FormUnity onSubmitForm={handleSubmitUnity} />,
-    <FormEmployee onSubmitForm={handleSubmitEmployee} />,
-    <FormBoss onSubmitForm={handleSubmitBoss} />,
+    <FormUnity onSubmitForm={handleSubmitUnity} dadosUnidade={dadosUnidade} />,
+    <FormEmployee
+      onSubmitForm={handleSubmitEmployee}
+      dadosServidor={dadosServidor}
+    />,
+    <FormBoss onSubmitForm={handleSubmitBoss} dadosChefe={dadosChefe} />,
   ];
 
   return (

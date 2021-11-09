@@ -7,16 +7,16 @@ const listCampus = [
   { name: "Auroras" },
   { name: "Malês" },
 ];
-const periodos = [{ description: "Outubro a Dezembro de 2021" }];
+const periodos = [{ description: "Novembro a Janeiro de 2021" }];
 
 function FormUnity(props) {
-  const { onSubmitForm } = props;
-  const [unidadeMaxima, setUnidadeMaxima] = useState("");
-  const [unidadeExercicio, setUnidadeExercicio] = useState("");
-  const [horario, setHorario] = useState("");
-  const [horarioExercicio, setHorarioExercicio] = useState("");
-  const [periodo, setPeriodo] = useState(periodos[0]);
-  const [campus, setCampus] = useState(listCampus[0]);
+  const { onSubmitForm, dadosUnidade } = props;
+  const [unidadeMaxima, setUnidadeMaxima] = useState(dadosUnidade.unidadeMaxima === undefined ? "" : dadosUnidade.unidadeMaxima);
+  const [unidadeExercicio, setUnidadeExercicio] = useState(dadosUnidade.unidadeExercicio === undefined ? "" : dadosUnidade.unidadeExercicio);
+  const [horario, setHorario] = useState(dadosUnidade.horario === undefined ? "" : dadosUnidade.horario);
+  const [horarioExercicio, setHorarioExercicio] = useState(dadosUnidade.horarioExercicio === undefined ? "" : dadosUnidade.horarioExercicio);
+  const [periodo, setPeriodo] = useState(dadosUnidade.periodo === undefined ? periodos[0] : dadosUnidade.periodo);
+  const [campus, setCampus] = useState(dadosUnidade.campus === undefined ? listCampus[0] : dadosUnidade.campus);
 
   const handleChangeCampus = (event, values) => {
     setCampus(values);

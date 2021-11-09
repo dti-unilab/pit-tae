@@ -25,7 +25,7 @@ function PagePIT() {
       onSubmitForm={handleLogin}
       erros={erros}
     />,
-    <StepProfessional onSubmitForm={handleProfessional} data={dataProfessional} />,
+    <StepProfessional onSubmitForm={handleProfessional} dataProfessional={dataProfessional} />,
     <StepPlanning
       onAddAfastamento={handleAddAfastamento}
       onAddAtividade={handleAddAtividade}

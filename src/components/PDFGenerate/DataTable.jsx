@@ -160,36 +160,32 @@ export default function DataTable(props) {
           </tr>
 
           {props.allData.dataProfessional.dadosServidor.exerceGestao ? (
-            <tr>
-              <td>Dados de gestão:</td>
-              <td colSpan="3">
-                {props.allData.dataProfessional.dadosServidor.denominacao
-                  .descricao +
-                  " - " +
-                  props.allData.dataProfessional.dadosServidor.nivelChefia
-                    .descricao}
-              </td>
-            </tr>
+            <>
+              <tr>
+                <td>Dados de gestão:</td>
+                <td colSpan="3">
+                  {props.allData.dataProfessional.dadosServidor.denominacao
+                    .descricao +
+                    " - " +
+                    props.allData.dataProfessional.dadosServidor.nivelChefia
+                      .descricao}
+                </td>
+              </tr>
+              <tr>
+                <td>Quantidade de servidores gerenciados:</td>
+                <td colSpan="3">
+                  {
+                    props.allData.dataProfessional.dadosServidor
+                      .servidoresGerenciados
+                  }
+                </td>
+              </tr>
+            </>
           ) : (
-            <tr>
-              <td>Dados de gestão:</td>
-              <td colSpan="3">Não Exerce Gestão</td>
-            </tr>
+            <></>
           )}
-
-          <tr>
-            <td>Quantidade de servidores gerenciados:</td>
-            <td colSpan="3">
-              {
-                props.allData.dataProfessional.dadosServidor
-                  .servidoresGerenciados
-              }
-            </td>
-          </tr>
         </tbody>
       </CustomTable>
-      <br />
-      <br />
       <br />
       <br />
       <CustomTable>
@@ -238,7 +234,11 @@ export default function DataTable(props) {
                 <td>{afastamento.tipoAusencia.descricao}</td>
                 <td>{afastamento.especificar}</td>
                 <td>Período</td>
-                <td>{toBrFormat(afastamento.inicio) + " - " + toBrFormat(afastamento.fim)}</td>
+                <td>
+                  {toBrFormat(afastamento.inicio) +
+                    " - " +
+                    toBrFormat(afastamento.fim)}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -35,15 +35,19 @@ const niveisChefia = [
 ];
 
 function FormEmployee(props) {
-  const { onSubmitForm } = props;
-  const [regime, setRegime] = useState(regimes[2]);
-  const [denominacao, setDenominacao] = useState(null);
-  const [nivelChefia, setNivelChefia] = useState(null);
-  const [cargoEfetivo, setCargoEfetivo] = useState("");
-  const [servidoresGerenciados, setServidoresGerenciados] = useState(0);
-  const [exerceGestao, setExerceGestao] = useState(false);
+  const { onSubmitForm, dadosServidor } = props;
+  const [regime, setRegime] = useState(dadosServidor.regime === undefined ? regimes[2] : dadosServidor.regime);
+  const [denominacao, setDenominacao] = useState(dadosServidor.denominacao);
+  const [nivelChefia, setNivelChefia] = useState(dadosServidor.nivelChefia);
+  const [cargoEfetivo, setCargoEfetivo] = useState(dadosServidor.cargoEfetivo === undefined ? "" : dadosServidor.cargoEfetivo);
+  const [servidoresGerenciados, setServidoresGerenciados] = useState(dadosServidor.servidoresGerenciados === undefined ? 0 : dadosServidor.servidoresGerenciados);
+  const [exerceGestao, setExerceGestao] = useState(dadosServidor.exerceGestao === undefined ? false : dadosServidor.exerceGestao);
 
   const handleExerceGestao = (event) => {
+
+    if(event.target.checked === false){
+      setServidoresGerenciados(0);
+    }
     setExerceGestao(event.target.checked);
   };
   const handleChangeRegime = (event, values) => {
@@ -70,6 +74,7 @@ function FormEmployee(props) {
         });
       }}
     >
+
       <CardHeader title="2.1. Dados do Servidor" />
       <TextField
         value={cargoEfetivo}
@@ -159,7 +164,7 @@ function FormEmployee(props) {
               setServidoresGerenciados(event.target.value);
             }}
             id="numeroDeServidores"
-            label="Quantidade de servidores gerenciados"
+            label="Quantidade de servidores sob sua chefia imediata"
             variant="outlined"
             margin="normal"
             fullWidth
