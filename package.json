@@ -27,6 +27,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "react-swipeable-views": "^0.14.0",
+    "reactjs-media": "^2.1.4",
     "styled-components": "^5.3.1",
     "web-vitals": "^1.0.1"
   },

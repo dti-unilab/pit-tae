@@ -90,7 +90,7 @@ export default function DataTable(props) {
       >
         <img src={LogoUNILABPreto} width="50%" alt="Logo Unilab" />
         <p>
-          PLANO INDIVIDUAL DE TRABALHO PARA O SEMESTRE
+          PLANO INDIVIDUAL DE TRABALHO
           <br />
           Instrução Normativa SGP/UNILAB nº 8 de novembro de 2020
         </p>
