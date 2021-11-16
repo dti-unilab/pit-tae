@@ -20,12 +20,14 @@ function PagePIT() {
   const [erros, setErros] = useState({ login: { valid: true, text: "" } });
 
   const formStep = [
-    <StepAuth
-      disabledLogin={disabledLogin}
-      onSubmitForm={handleLogin}
-      erros={erros}
-    />,
-
+    <>
+      <StepAuth
+        disabledLogin={disabledLogin}
+        onSubmitForm={handleLogin}
+        erros={erros}
+      />
+      <AccordionTutorial/>
+    </>,
     <StepProfessional
       onSubmitForm={handleProfessional}
       dataProfessional={dataProfessional}

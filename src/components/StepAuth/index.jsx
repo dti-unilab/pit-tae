@@ -15,10 +15,10 @@ function StepAuth(props) {
   const [errorPassword, setErrorPassowrd] = useState({ valid: true, text: "" });
 
   function validateLogin(event) {
-    if (event.target.value.length > 4) {
+    if (event.target.value.length > 1) {
       setErrorLogin({ valid: true, text: "" });
     } else {
-      setErrorLogin({ valid: false, text: "Digite no mínimo 3 caracteres" });
+      setErrorLogin({ valid: false, text: "Digite no mínimo 1 caractere" });
     }
   }
 

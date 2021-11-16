@@ -5,7 +5,6 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ReactVideo } from "reactjs-media";
-import videoTutorial from "../../assets/video/PITTAE.mp4";
 import posterTutorial from "../../assets/img/poster-tutorial.png";
 
 export default function AccordionTutorial() {
@@ -21,7 +20,7 @@ export default function AccordionTutorial() {
         </AccordionSummary>
         <AccordionDetails>
           <ReactVideo
-            src={videoTutorial}
+            src="https://unilab.edu.br/pit-tae/PITTAE.mp4"
             poster={posterTutorial}
             primaryColor="#3b0304"
           />
