@@ -72,7 +72,8 @@ export default function DataTable(props) {
    * @param {String} date
    */
   function toBrFormat(date) {
-    const now = new Date(date);
+    var arrDate = date.split('-');
+    const now = new Date(arrDate[0], arrDate[1]-1, arrDate[2]);
     return now.getDate() + "/" + (1 + now.getMonth()) + "/" + now.getFullYear();
   }
 

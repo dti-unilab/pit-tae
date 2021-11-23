@@ -10,6 +10,7 @@ import React, { useState } from "react";
 
 const regimes = [
   { description: "20 horas" },
+  { description: "25 horas" },
   { description: "30 horas" },
   { description: "40 horas" },
 ];
