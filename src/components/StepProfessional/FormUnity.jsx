@@ -7,7 +7,7 @@ const listCampus = [
   { name: "Auroras" },
   { name: "Malês" },
 ];
-const periodos = [{ description: "Novembro a Janeiro de 2021" }];
+const periodos = [{ description: "Fevereiro a abril de 2022", code: 202202, year: 2022 }, { description: "Novembro de 2021 a Janeiro de 2022", code: 202111, year:2021 }];
 
 function FormUnity(props) {
   const { onSubmitForm, dadosUnidade } = props;

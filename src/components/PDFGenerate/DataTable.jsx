@@ -104,7 +104,7 @@ export default function DataTable(props) {
           </tr>
           <tr>
             <td colSpan="2">
-              Plano de Trabalho nº 202111{props.allData.user.id}/2021
+              Plano de Trabalho nº {props.allData.dataProfessional.dadosUnidade.periodo.code}{props.allData.user.id}/{props.allData.dataProfessional.dadosUnidade.periodo.year}
             </td>
           </tr>
         </thead>
